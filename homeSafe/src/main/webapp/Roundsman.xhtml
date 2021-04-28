@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Respartidores:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Repartidores</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Roundsman" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.iD_Roundsman}" required="true" />
+			<br />
+			<h:outputLabel for="ID_DeliveryBusiness" value="Id Delivery "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="ID_DeliveryBusiness"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.iD_DeliveryBusiness}" required="true" />
+			<br />
+			<h:outputLabel for="DNI_Roundsman" value="DNI "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="DNI_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.dNI_Roundsman}"
+				maxlength="8" required="true" />
+			<br />
+			
+			<h:outputLabel for="FisrtName_Roundsman" value="Nombres "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="FisrtName_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.firstName_Roundsman}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="LastName_Roundsman" value="Apellidos "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="LastName_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.lastName_Roundsman}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="Adress_Roundsman" value="Dirección "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Adress_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.address_Roundsman}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="Cellphone_Roundsman" value="Celular "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Cellphone_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.cellphone_Roundsman}"
+				maxlength="9" required="true" />
+			<br />
+			<h:outputLabel for="Sex_Roundsman" value="Sexo "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Sex_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.sex_Roundsman}"
+				maxlength="20" required="true" />
+			<br />
+			<h:outputLabel for="DateBirth_Roundsman" value="Cumpleaños "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="DateBirth_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.dateBirth_Roundsman}"
+				maxlength="20" required="true" />
+			<br />
+			<h:outputLabel for="Notes_Roundsman" value="Notas "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Notes_Roundsman"
+				styleClass="form-control"
+				value="#{RoundsmanController.roundsman.notes_Roundsman}"
+				maxlength="100" required="true" />
+			<p:commandButton value="Grabar"
+				actionListener="#{RoundsmanController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listRoundsman?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listRoundsman?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>
