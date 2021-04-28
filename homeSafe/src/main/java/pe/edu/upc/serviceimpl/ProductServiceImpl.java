@@ -15,20 +15,21 @@ import pe.edu.upc.service.IProductService;
 public class ProductServiceImpl implements IProductService{
 
 	@Inject
-	private IProductDao pDao;
+	private IProductDao prDao;
 	@Override
-	public void insert(Product prod) {
-		pDao.insert(prod);
+	public void insert(Product product) {
+		prDao.insert(product);
 	}
 
 	@Override
 	public List<Product> list() {
-		return pDao.list();
+		return prDao.list();
 	}
 
 	@Override
-	public void delete(int iD_Product) {
-		pDao.delete(iD_Product);
+	public void delete(int ID_Product) {
+		prDao.delete(ID_Product);
 	}
+	//ss
 
 }

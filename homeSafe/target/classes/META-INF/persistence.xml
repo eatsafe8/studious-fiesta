@@ -8,6 +8,7 @@
 		<jta-data-source>java:/pwebDS</jta-data-source>
 		<class>pe.edu.upc.entity.Owner</class>
 		<class>pe.edu.upc.entity.Restaurant</class>
+		<class>pe.edu.upc.entity.Product</class>
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"

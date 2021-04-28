@@ -8,72 +8,109 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+
 import pe.edu.upc.entity.Product;
+import pe.edu.upc.entity.Restaurant;
 import pe.edu.upc.service.IProductService;
+import pe.edu.upc.service.IRestaurantService;
 
 @Named
 @RequestScoped
 public class ProductController {
-
 	@Inject
 	private IProductService prService;
-	
-	private Product prod;
-	
-	List<Product> listaProductos;
+	@Inject
+	private IRestaurantService rtService;
+	//Attributes
+	private Product product;
+	private Restaurant restaurant;
+	List<Product> listaProducts;
+	List<Restaurant> listaRestaurants;
 	
 	@PostConstruct
 	public void init() {
-		this.listaProductos = new ArrayList<Product>();
-		this.prod = new Product();
-		this.listarProductos();
+		this.restaurant = new Restaurant();
+		this.product = new Product();
+		this.listaRestaurants = new ArrayList<Restaurant>();
+		this.listaProducts = new ArrayList<Product>();
+		this.listarProduct();
+		this.listarRestaurant();
 	}
-
-	public String nuevaProducto() {
-		this.setProd(new Product());
-		return "product.xhtml";
-	}
-	public void insertar() {
-		try {
-			prService.insert(prod);			
-		} catch (Exception e) {
-			System.out.println("Error al insertar en el controller de producto");
+	//cd
+	// Mutates
+		public String nuevoProduct() {
+			this.setProduct(new Product());
+			return "Product.xhtml";
 		}
-	}
-	
-	
-	public void listarProductos() {
-		try {
-			listaProductos=prService.list();
-		} catch (Exception e) {
-			System.out.println("Error al listar en el controller de producto");
+
+		public void insertar() {
+			try {
+				prService.insert(product);
+			} catch (Exception e) {
+				System.out.println("Error al insertar en el controller de producto");
+				// TODO: handle exception
+			}
 		}
-	}
 
-	public void eliminar(Product prod) {
-		try {
-			prService.delete(prod.getiD_Product());
-			this.listarProductos();
-		} catch (Exception e) {
-			System.out.println("Error al eliminar en el controller de producto");
+		public void listarRestaurant() {
+			try {
+				listaRestaurants = rtService.list();
+			} catch (Exception e) {
+				System.out.println("Error al listar en el controller de restaurant");
+				// TODO: handle exception
+			}
 		}
-	}
+
+		public void listarProduct() {
+			try {
+				listaProducts = prService.list();
+			} catch (Exception e) {
+				System.out.println("Error al listar en el controller de product");
+				// TODO: handle exception
+			}
+		}
+
+		public void eliminar(Product product) {
+			try {
+				prService.delete(product.getID_Product());
+				this.listarProduct();
+			} catch (Exception e) {
+				System.out.println("Error al eliminar en el controller de product");
+				// TODO: handle exception
+			}
+		}
 	
-	public Product getProd() {
-		return prod;
-	}
 
-	public void setProd(Product prod) {
-		this.prod = prod;
-	}
+		public Product getProduct() {
+			return product;
+		}
 
-	public List<Product> getListaProductos() {
-		return listaProductos;
-	}
+		public void setProduct(Product product) {
+			this.product = product;
+		}
 
-	public void setListaProductos(List<Product> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
-	
+		public Restaurant getRestaurant() {
+			return restaurant;
+		}
+
+		public void setRestaurant(Restaurant restaurant) {
+			this.restaurant = restaurant;
+		}
+
+		public List<Product> getListaProducts() {
+			return listaProducts;
+		}
+
+		public void setListaProducts(List<Product> listaProducts) {
+			this.listaProducts = listaProducts;
+		}
+
+		public List<Restaurant> getListaRestaurants() {
+			return listaRestaurants;
+		}
+
+		public void setListaRestaurants(List<Restaurant> listaRestaurants) {
+			this.listaRestaurants = listaRestaurants;
+		}
 	
 }
