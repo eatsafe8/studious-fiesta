@@ -94,7 +94,7 @@
 				converter="omnifaces.SelectItemsConverter">
 
 				<f:selectItems value="#{restaurantController.listaOwners}" var="m"
-					itemLabel="#{m.ID_Owner}" itemValue="#{m}" />
+					itemLabel="#{m.lastName_Owner}#{m.firstName_Owner}" itemValue="#{m}" />
 
 			</p:selectOneMenu>
 
@@ -102,7 +102,7 @@
 
 			<p:commandButton value="Grabar"
 				actionListener="#{restaurantController.insertar()}"
-				styleClass="btn btn-primary " update="@form"
+				styleClass="btn btn-danger " update="@form"
 				action="listRestaurant?faces-redirect=true" />
 			<p:commandButton value="Cancelar"
 				action="listRestaurant?faces-redirect=true" immediate="true"

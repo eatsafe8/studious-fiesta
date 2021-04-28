@@ -23,7 +23,7 @@
 					<div class="form-group">
 						<p:commandButton value="Nuevo"
 							action="#{restaurantController.nuevoRestaurant()}"
-							styleClass="btn btn-primary" ajax="false" />
+							styleClass="btn btn-danger" ajax="false" />
 					</div>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 							</p:column>
 							
 							<p:column headerText="Dueño" sortBy="#{res.owner.ID_Owner}">
-								<h:outputText value="#{res.owner.ID_Owner}" />
+								<h:outputText value="#{res.owner.lastName_Owner}#{res.owner.firstName_Owner}" />
 							</p:column>
 							
 							<p:column headerText="Operación" exportable="false">
