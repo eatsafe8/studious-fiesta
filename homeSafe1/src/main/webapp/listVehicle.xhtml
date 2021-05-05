@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <ui:composition
+	template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Vehículos:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Vehículos</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <p:commandButton value="Nuevo"
+				action="#{vehicleController.nuevoVehicle()}"
+				styleClass="btn btn-danger" ajax="false" /> </div> </div> </div>
+
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstVehicle" var="veh" value="#{vehicleController.listaVehicles}"
+				paginator="true" paginatorPosition="top"
+				rowsPerPageTemplate="10,20,30,40,50" rows="10"
+				styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
+
+				<p:column headerText="Id" sortBy="#{veh.ID_Vehicle}">
+					<h:outputText value="#{veh.ID_Vehicle}" />
+				</p:column>
+
+				<p:column headerText="Marca" sortBy="#{veh.brand_Vehicle}">
+					<h:outputText value="#{veh.brand_Vehicle}" />
+				</p:column>
+
+				<p:column headerText="Color" sortBy="#{veh.colour_Vehicle}">
+					<h:outputText value="#{veh.colour_Vehicle}" />
+				</p:column>
+
+				<p:column headerText="Tipo" sortBy="#{veh.type_Vehicle}">
+					<h:outputText value="#{veh.type_Vehicle}" />
+				</p:column>
+
+				<p:column headerText="Placa" sortBy="#{veh.licenseNumber_Vehicle}">
+					<h:outputText value="#{veh.licenseNumber_Vehicle}" />
+				</p:column>
+
+				<p:column headerText="Notas" sortBy="#{veh.notes_Vehicle}">
+					<h:outputText value="#{veh.notes_Vehicle}" />
+				</p:column>
+
+				<p:column headerText="Dueño" sortBy="#{veh.roundsman.ID_Roundsman}">
+					<h:outputText
+						value="#{veh.roundsman.lastName_Roundsman}#{veh.roundsman.firstName_Roundsman}" />
+				</p:column>
+
+				<p:column headerText="Operación" exportable="false">
+
+					<h:commandLink action="lstVehicle" value="Eliminar"
+						actionListener="#{vehicleController.eliminar(veh)}" />
+				</p:column>
+
+			</p:dataTable> </div> </div> </div>
+
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Reservaciones:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Reservaciones </span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Reservation" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_Reservation"
+				styleClass="form-control"
+				value="#{reservationController.reservation.ID_Reservation}"
+				required="true" />
+			<br />
+
+			<h:outputLabel for="Date_Reservation" value="Fecha de reservación "
+				styleClass="control-label" />
+
+			<p:calendar id="Date_Reservation" pattern="dd/MM/yyyy"
+				value="#{reservationController.reservation.date_Reservation}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+
+			<h:outputLabel for="Time_Reservation" value="Hora de reservación "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Time_Reservation"
+				styleClass="form-control"
+				value="#{reservationController.reservation.time_Reservation}"
+				maxlength="10" required="true" />
+			<br />
+
+			<h:outputLabel for="NroPersons_Reservation"
+				value="Nro. de Asistentes " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="NroPersons_Reservation"
+				styleClass="form-control"
+				value="#{reservationController.reservation.nroPersons_Reservation}"
+				maxlength="2" required="false" />
+			<br />
+
+			<h:outputLabel for="Notes_Reservation" value="Notas "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Notes_Reservation"
+				styleClass="form-control"
+				value="#{reservationController.reservation.notes_Reservation}"
+				maxlength="100" required="true" />
+			<br />
+
+			<p:outputLabel for="cboRestaurant" value="Restaurante" />
+			<br />
+			<p:selectOneMenu id="cboRestaurant"
+				value="#{reservationController.reservation.restaurant}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{reservationController.listaRestaurants}"
+					var="m" itemLabel="#{m.name_Restaurant}" itemValue="#{m}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<p:outputLabel for="cboCustomer" value="Cliente" />
+			<br />
+			<p:selectOneMenu id="cboCustomer"
+				value="#{reservationController.reservation.customer}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{reservationController.listaCustomers}"
+					var="n" itemLabel="#{n.firstName_Customer}" itemValue="#{n}" />
+
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{reservationController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listReservation?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listReservation?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+
+	</ui:define>
+</ui:composition> </html>

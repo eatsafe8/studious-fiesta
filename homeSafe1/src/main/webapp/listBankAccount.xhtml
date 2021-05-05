@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Cuentas Bancarias:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Cuentas Bancarias</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<p:commandButton value="Nuevo"
+							action="#{bankAccountController.nuevoBankAccount()}"
+							styleClass="btn btn-danger" ajax="false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstbankAccount" var="bac"
+							value="#{bankAccountController.listaBankAccounts}"
+							paginator="true" paginatorPosition="top"
+							rowsPerPageTemplate="10,20,30,40,50" rows="10"
+							styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{bac.ID_BankAccount}">
+								<h:outputText value="#{bac.ID_BankAccount}" />
+							</p:column>
+
+							<p:column headerText="Número" sortBy="#{bac.nro_BankAccount}">
+								<h:outputText value="#{bac.nro_BankAccount}" />
+							</p:column>
+							
+							<p:column headerText="Banco" sortBy="#{bac.bank_BankAccount}">
+								<h:outputText value="#{bac.bank_BankAccount}" />
+							</p:column>
+							
+							<p:column headerText="Tipo" sortBy="#{bac.type_BankAccount}">
+								<h:outputText value="#{bac.type_BankAccount}" />
+							</p:column>
+							
+							<p:column headerText="Dueño" sortBy="#{bac.owner.ID_Owner}">
+								<h:outputText value="#{bac.owner.lastName_Owner}#{bac.owner.firstName_Owner}" />
+							</p:column>
+							
+							
+							<p:column headerText="Operación" exportable="false">
+
+								<h:commandLink action="lstbankAccount" value="Eliminar"
+									actionListener="#{bankAccountController.eliminar(bac)}" />
+							</p:column>
+							
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

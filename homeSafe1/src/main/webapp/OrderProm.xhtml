@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Ventas de Promociones:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Ventas de Promociones</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_OrderProm" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_OrderProm"
+				styleClass="form-control"
+				value="#{orderPromController.orderProm.ID_OrderProm}"
+				required="true" />
+			<br />
+
+			<p:outputLabel for="cboOrder" value="Order" />
+			<br />
+			<p:selectOneMenu id="cboOrder"
+				value="#{orderPromController.orderProm.order}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{orderPromController.listaOrders}"
+					var="m" itemLabel="#{m.ID_Order}" itemValue="#{m}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<p:outputLabel for="cboPromotion" value="Promocion" />
+			<br />
+			<p:selectOneMenu id="cboPromotion"
+				value="#{orderPromController.orderProm.promotion}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{orderPromController.listaPromotions}"
+					var="n" itemLabel="#{n.name_Promotion}" itemValue="#{n}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<h:outputLabel for="Quantity_OrderProm" value="Porciones "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Quantity_OrderProm"
+				styleClass="form-control"
+				value="#{orderPromController.orderProm.quantity_OrderProm}"
+				maxlength="10" required="true" />
+			<br />
+			
+			<h:outputLabel for="Notes_OrderProm" value="Notas "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Notes_OrderProm"
+				styleClass="form-control"
+				value="#{orderPromController.orderProm.notes_OrderProm}"
+				required="true" />
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{orderPromController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listOrderProm?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listOrderProm?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+
+	</ui:define>
+</ui:composition> 
+</html>

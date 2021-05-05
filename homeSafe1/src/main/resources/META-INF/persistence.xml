@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="homeSafe"
+		transaction-type="JTA">
+		<jta-data-source>java:/pwebDS</jta-data-source>
+		<class>pe.edu.upc.entity.Owner</class>
+		<class>pe.edu.upc.entity.Restaurant</class>
+		<class>pe.edu.upc.entity.Product</class>
+		<class>pe.edu.upc.entity.Roundsman</class>
+		<class>pe.edu.upc.entity.BankAccount</class>
+		<class>pe.edu.upc.entity.Card</class>
+		<class>pe.edu.upc.entity.Promotion</class>
+		<class>pe.edu.upc.entity.Vehicle</class>
+		<class>pe.edu.upc.entity.Customer</class>
+		<class>pe.edu.upc.entity.DetailPromotion</class>
+		<class>pe.edu.upc.entity.Order</class>
+		<class>pe.edu.upc.entity.Reservation</class>
+		<class>pe.edu.upc.entity.Delivery</class>
+		<class>pe.edu.upc.entity.OrderProm</class>
+		<class>pe.edu.upc.entity.OrderDetail</class>
+		<class>pe.edu.upc.entity.CustomerSecurity</class>
+		<class>pe.edu.upc.entity.Rol</class>
+		<class>pe.edu.upc.entity.User</class>
+		<class>pe.edu.upc.entity.UserRol</class>
+		<properties>
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="update" />
+		</properties>
+	</persistence-unit>
+</persistence>

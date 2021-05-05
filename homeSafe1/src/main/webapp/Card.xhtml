@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Tarjetas de Credito:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Tarjetas de Crédito</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Card" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_Card"
+				styleClass="form-control"
+				value="#{cardController.card.ID_Card}"
+				required="true" />
+
+			<br />
+			<h:outputLabel for="Nro_Card" value="Número "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Nro_Card"
+				styleClass="form-control"
+				value="#{cardController.card.nro_Card}"
+				maxlength="16" required="true" />
+			<br />
+
+			<h:outputLabel for="CVV_Card" value="CVV "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="CVV_Card"
+				styleClass="form-control"
+				value="#{cardController.card.CVV_Card}"
+				maxlength="4" required="true" />
+			<br />
+
+			<h:outputLabel for="Expiration_Card" value="Fecha Vencimiento "
+				styleClass="control-label" />
+
+			<p:calendar id="Expiration_Card" pattern="MM/yyyy"
+				value="#{cardController.card.expiration_Card}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+
+			<p:outputLabel for="cboOwner" value="Dueño" />
+			<br />
+			<p:selectOneMenu id="cboOwner"
+				value="#{cardController.card.owner}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{cardController.listaOwners}" var="m"
+					itemLabel="#{m.lastName_Owner}#{m.firstName_Owner}" itemValue="#{m}"  required="false" />
+
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{cardController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listCard?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCard?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

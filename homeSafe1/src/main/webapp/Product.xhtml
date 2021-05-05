@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Productos:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Productos</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Product" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_Product"
+				styleClass="form-control"
+				value="#{productController.product.ID_Product}" required="true" />
+			<br />
+			<h:outputLabel for="Name_Product" value="Nombre "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="Name_Product"
+				styleClass="form-control"
+				value="#{productController.product.name_Product}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="Price_Product" value="Precio "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="Price_Product"
+				styleClass="form-control"
+				value="#{productController.product.price_Product}"
+				maxlength="20" required="true" />
+			<br />
+			<h:outputLabel for="Discount_Product" value="Descuento "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="Discount_Product"
+				styleClass="form-control"
+				value="#{productController.product.discount_Product}"
+				maxlength="20" required="true" />
+			<br />
+			<h:outputLabel for="Stock_Product" value="Stock "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Stock_Product"
+				styleClass="form-control"
+				value="#{productController.product.stock_Product}"
+				maxlength="20" required="true" />
+			<br />
+			<h:outputLabel for="Notes_Product" value="Notas "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Notes_Product"
+				styleClass="form-control"
+				value="#{productController.product.notes_Product}"
+				maxlength="100" required="true" />
+			<br />
+			<p:outputLabel for="cboRestaurant" value="Restaurante" />
+			<br />
+			<p:selectOneMenu id="cboRestaurant"
+				value="#{productController.product.restaurant}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{productController.listaRestaurants}"
+					var="m" itemLabel="#{m.name_Restaurant}" itemValue="#{m}" />
+
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{productController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listProduct?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listProduct?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+     
+     
+	</ui:define>
+</ui:composition> </html>

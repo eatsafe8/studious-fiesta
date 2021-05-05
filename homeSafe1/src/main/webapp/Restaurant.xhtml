@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Restaurantes:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Restaurantes</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Restaurant" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_Owner"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.ID_Restaurant}"
+				required="true" />
+
+			<br />
+			<h:outputLabel for="Name_Restaurant" value="Nombre "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Name_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.name_Restaurant}"
+				maxlength="50" required="true" />
+			<br />
+
+			<h:outputLabel for="Aforo_Restaurant" value="Aforo "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Aforo_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.aforo_Restaurant}"
+				maxlength="10" required="true" />
+			<br />
+
+			<h:outputLabel for="Address_Restaurant" value="Direccion "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Address_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.address_Restaurant}"
+				maxlength="50" required="true" />
+			<br />
+
+			<h:outputLabel for="OpeningTime_Restaurant" value="Hora de Apertura "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="OpeningTime_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.openingTime_Restaurant}"
+				maxlength="10" required="true" />
+
+			<br />
+			<h:outputLabel for="ClosingTime_Restaurant" value="Hora de Cierre "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ClosingTime_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.closingTime_Restaurant}"
+				maxlength="10" required="true" />
+
+			<br />
+			<h:outputLabel for="Category_Restaurant" value="Categoría "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Category_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.category_Restaurant}"
+				maxlength="50" required="true" />
+
+			<br />
+			<h:outputLabel for="Notes_Restaurant" value="Notas "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Notes_Restaurant"
+				styleClass="form-control"
+				value="#{restaurantController.restaurant.notes_Restaurant}"
+				maxlength="100" required="true" />
+				
+			<br />
+			
+			<p:outputLabel for="cboOwner" value="Dueño" />
+			<br />
+			<p:selectOneMenu id="cboOwner"
+				value="#{restaurantController.restaurant.owner}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{restaurantController.listaOwners}" var="m"
+					itemLabel="#{m.lastName_Owner}#{m.firstName_Owner}"
+					itemValue="#{m}" />
+
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{restaurantController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listRestaurant?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listRestaurant?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+			<br />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

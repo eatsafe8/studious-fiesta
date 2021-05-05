@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Detalle de Ventas:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Detalle de Ventas</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_OrderDetail" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_OrderDetail"
+				styleClass="form-control"
+				value="#{orderDetailController.orderDetail.ID_OrderDetail}"
+				required="true" />
+			<br />
+
+			<p:outputLabel for="cboOrder" value="Order" />
+			<br />
+			<p:selectOneMenu id="cboOrder"
+				value="#{orderDetailController.orderDetail.order}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{orderDetailController.listaOrders}" var="m"
+					itemLabel="#{m.ID_Order}" itemValue="#{m}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<p:outputLabel for="cboProduct" value="Producto" />
+			<br />
+			<p:selectOneMenu id="cboProduct"
+				value="#{orderDetailController.orderDetail.product}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{orderDetailController.listaProducts}"
+					var="n" itemLabel="#{n.name_Product}" itemValue="#{n}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<h:outputLabel for="Quantity_OrderDetail" value="Porciones "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Quantity_OrderDetail"
+				styleClass="form-control"
+				value="#{orderDetailController.orderDetail.quantity_OrderDetail}"
+				maxlength="10" required="true" />
+			<br />
+			<h:outputLabel for="Discount_OrderDetail" value="Descuento "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Discount_OrderDetail"
+				styleClass="form-control"
+				value="#{orderDetailController.orderDetail.discount_OrderDetail}" maxlength="20"
+				required="true" />
+				
+			<br />
+			
+			<h:outputLabel for="Notes_OrderDetail" value="Notas "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Notes_OrderDetail"
+				styleClass="form-control"
+				value="#{orderDetailController.orderDetail.notes_OrderDetail}"
+				required="true" />
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{orderDetailController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listOrderDetail?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listOrderDetail?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+
+	</ui:define>
+</ui:composition>
+</html>

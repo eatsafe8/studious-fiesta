@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Dueños:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Dueños</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Owner" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.ID_Owner}" required="true" />
+			<br />
+			<h:outputLabel for="DNI_Owner" value="DNI "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="DNI_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.DNI_Owner}"
+				maxlength="8" required="true" />
+			<br />
+			<h:outputLabel for="FisrtName_Owner" value="Nombres "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="FisrtName_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.firstName_Owner}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="LastName_Owner" value="Apellidos "
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="LastName_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.lastName_Owner}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="Adress_Owner" value="Dirección "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Adress_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.address_Owner}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="Cellphone_Owner" value="Celular "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Cellphone_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.cellphone_Owner}"
+				maxlength="20" required="true" />
+			<br />
+			<h:outputLabel for="Country_Owner" value="País "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Country_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.country_Owner}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="RUC_Owner" value="RUC "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="RUC_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.RUC_Owner}"
+				maxlength="11" required="true" />
+			<br />
+			<h:outputLabel for="Email_Owner" value="Correo electrónico "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Email_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.email_Owner}"
+				maxlength="50" required="true" />
+			<br />
+			<h:outputLabel for="Notes_Owner" value="Notas "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Notes_Owner"
+				styleClass="form-control"
+				value="#{ownerController.owner.notes_Owner}"
+				maxlength="100" required="true" />
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{ownerController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listOwner?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listOwner?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+			<br />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

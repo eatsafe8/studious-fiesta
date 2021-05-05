@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Detalle de Promociones:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Detalles de Promociones</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_DetailPromotion" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ID_DetailPromotion"
+				styleClass="form-control"
+				value="#{detailPromotionController.detailPromotion.ID_DetailPromotion}"
+				required="true" />
+			<br />
+
+			<p:outputLabel for="cboPromotion" value="Promocion" />
+			<br />
+			<p:selectOneMenu id="cboPromotion"
+				value="#{detailPromotionController.detailPromotion.promotion}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{detailPromotionController.listaPromotions}"
+					var="m" itemLabel="#{m.name_Promotion}" itemValue="#{m}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<p:outputLabel for="cboProduct" value="Producto" />
+			<br />
+			<p:selectOneMenu id="cboProduct"
+				value="#{detailPromotionController.detailPromotion.product}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{detailPromotionController.listaProducts}"
+					var="n" itemLabel="#{n.name_Product}" itemValue="#{n}" />
+
+			</p:selectOneMenu>
+			<br />
+
+			<h:outputLabel for="Quantity_DetailPromotion" value="Porciones "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Quantity_DetailPromotion"
+				styleClass="form-control"
+				value="#{detailPromotionController.detailPromotion.quantity_DetailPromotion}"
+				maxlength="2" required="true" />
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{detailPromotionController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listDetailPromotion?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listDetailPromotion?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+
+	</ui:define>
+</ui:composition> </html>

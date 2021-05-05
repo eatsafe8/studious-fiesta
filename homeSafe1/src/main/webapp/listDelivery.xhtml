@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <ui:composition
+	template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Entregas:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Entregas</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <p:commandButton value="Nuevo"
+				action="#{deliveryController.nuevoDelivery()}"
+				styleClass="btn btn-danger" ajax="false" /> </div> </div> </div>
+
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstDelivery" var="del"
+				value="#{deliveryController.listaDeliveries}" paginator="true"
+				paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+				rows="10" styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
+
+				<p:column headerText="Id" sortBy="#{del.ID_Delivery}">
+					<h:outputText value="#{del.ID_Delivery}" />
+				</p:column>
+				
+				<p:column headerText="Cliente" sortBy="#{del.customer.ID_Customer}">
+					<h:outputText value="#{del.customer.firstName_Customer}" />
+				</p:column>
+				
+				<p:column headerText="Repartidor" sortBy="#{del.roundsman.ID_Roundsman}">
+					<h:outputText value="#{del.roundsman.firstName_Roundsman}" />
+				</p:column>
+				
+				<p:column headerText="Nro Order" sortBy="#{del.order.ID_Order}">
+					<h:outputText value="#{del.order.ID_Order}" />
+				</p:column>
+				
+				<p:column headerText="Destino de pedido" sortBy="#{del.destinationAdress}">
+					<h:outputText value="#{del.destinationAdress}" />
+				</p:column>
+
+				<p:column headerText="Fecha de Delivery"
+					sortBy="#{del.date_Delivery}">
+					<h:outputText value="#{del.date_Delivery}">
+						<f:convertDateTime pattern="dd-MM-yyyy" timeZone="UTC" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Hora de Delivery"
+					sortBy="#{del.time_Delivery}">
+					<h:outputText value="#{del.time_Delivery}" />
+				</p:column>
+				
+				<p:column headerText="District" sortBy="#{del.district_Delivery}">
+					<h:outputText value="#{del.district_Delivery}" />
+				</p:column>
+				
+				<p:column headerText="Precio Delivery" sortBy="#{del.price_Delivery}">
+					<h:outputText value="#{del.price_Delivery}" />
+				</p:column>
+				
+				<p:column headerText="Descuento Delivery" sortBy="#{del.discount_Delivery}">
+					<h:outputText value="#{del.discount_Delivery}" />
+				</p:column>
+				
+				<p:column headerText="Notas" sortBy="#{del.notes_Delivery}">
+					<h:outputText value="#{del.notes_Delivery}" />
+				</p:column>
+				
+				<p:column headerText="Operación" exportable="false">
+
+					<h:commandLink action="lstDelivery" value="Eliminar"
+						actionListener="#{deliveryController.eliminar(del)}" />
+				</p:column>
+
+			</p:dataTable> </div> </div> </div>
+
+		</h:form>
+
+	</ui:define>
+
+
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

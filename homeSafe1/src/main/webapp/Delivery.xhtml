@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Delivery:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Delivery </span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ID_Delivery" value="Id "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="ID_Delivery"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.ID_Delivery}"
+				required="true" />
+			<br />
+			
+			<h:outputLabel for="DestinationAdress" value="Direccion de destino "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="DestinationAdress"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.destinationAdress}"
+				maxlength="50" required="true" />
+			<br />
+
+			<h:outputLabel for="Date_Delivery" value="Fecha de entrega "
+				styleClass="control-label" />
+			<p:calendar id="Date_Delivery" pattern="dd/MM/yyyy"
+				value="#{deliveryController.delivery.date_Delivery}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+
+			<h:outputLabel for="Time_Delivery" value="Hora de entrega "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Time_Delivery"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.time_Delivery}"
+				maxlength="10" required="true" />
+			<br />
+
+			<h:outputLabel for="District_Delivery" value="Distrito "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="District_Delivery"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.district_Delivery}"
+				maxlength="100" required="true" />
+			<br />
+			
+			<h:outputLabel for="Price_Delivery" value="Precio delivery "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Price_Delivery"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.price_Delivery}" maxlength="5"
+				required="false" />
+			<br />
+			
+			<h:outputLabel for="Discount_Delivery" value="Descuento delivery"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Discount_Delivery"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.discount_Delivery}" maxlength="5"
+				required="false" />
+			<br />
+			
+			<h:outputLabel for="Notes_Delivery" value="Notas "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="Notes_Delivery"
+				styleClass="form-control"
+				value="#{deliveryController.delivery.notes_Delivery}"
+				maxlength="50" required="true" />
+			<br />
+
+			<p:outputLabel for="cboCustomer" value="Cliente" />
+			<br />
+			<p:selectOneMenu id="cboCustomer"
+				value="#{deliveryController.delivery.customer}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{deliveryController.listaCustomers}"
+					var="m" itemLabel="#{m.firstName_Customer}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+
+			<p:outputLabel for="cboRoundsman" value="Repartidor" />
+			<br />
+			<p:selectOneMenu id="cboRoundsman"
+				value="#{deliveryController.delivery.roundsman}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{deliveryController.listaRoundsmans}"
+					var="n" itemLabel="#{n.firstName_Roundsman}" itemValue="#{n}" />
+			</p:selectOneMenu>
+			<br />
+			
+			<p:outputLabel for="cboOrder" value="Nro Orden" />
+			<br />
+			<p:selectOneMenu id="cboOrder"
+				value="#{deliveryController.delivery.order}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{deliveryController.listaOrders}"
+					var="o" itemLabel="#{o.ID_Order}" itemValue="#{o}" />
+			</p:selectOneMenu>
+			<br />
+			
+			<p:commandButton value="Grabar"
+				actionListener="#{deliveryController.insertar()}"
+				styleClass="btn btn-danger " update="@form"
+				action="listDelivery?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listDelivery?faces-redirect=true" immediate="true"
+				styleClass="btn btn-danger" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+
+	</ui:define>
+</ui:composition> </html>

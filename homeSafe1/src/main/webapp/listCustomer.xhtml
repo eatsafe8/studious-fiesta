@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Clientes:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Clientes </span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<h:outputLabel for="name" value="Búsqueda"
+							styleClass="control-label" />
+						<p:inputText autocomplete="off" id="name"
+							styleClass="form-control"
+							value="#{customerController.customer.lastName_Customer}"
+							maxlength="120" />
+					</div>
+				</div>
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Limpiar" update="lstInfectious"
+							actionListener="#{customerController.clean()}"
+							styleClass="btn btn-default" ajax="false" />
+						<p:commandButton value="Buscar por apellido" update="lstCustomer"
+							actionListener="#{customerController.findByName()}"
+							styleClass="btn btn-default btn-border" ajax="true" />
+						<p:commandButton value="Buscar por DNI" update="lstCustomer"
+							actionListener="#{customerController.findByDNI()}"
+							styleClass="btn btn-default btn-border" ajax="true" />
+						<p:commandButton value="Nuevo"
+							action="#{customerController.nuevoCustomer()}"
+							styleClass="btn btn-danger" ajax="false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCustomer" var="cst"
+							value="#{customerController.listaCustomer}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{cst.ID_Customer}">
+								<h:outputText value="#{cst.ID_Customer}" />
+							</p:column>
+
+							<p:column headerText="DNI" sortBy="#{cst.DNI_Customer}">
+								<h:outputText value="#{cst.DNI_Customer}" />
+							</p:column>
+
+							<p:column headerText="Nombres" sortBy="#{cst.firstName_Customer}">
+								<h:outputText value="#{cst.firstName_Customer}" />
+							</p:column>
+
+							<p:column headerText="Apellidos"
+								sortBy="#{cst.lastName_Customer}">
+								<h:outputText value="#{cst.lastName_Customer}" />
+							</p:column>
+
+							<p:column headerText="Dirección" sortBy="#{cst.adress_Customer}">
+								<h:outputText value="#{cst.adress_Customer}" />
+							</p:column>
+
+							<p:column headerText="Celular" sortBy="#{cst.cellphone_Customer}">
+								<h:outputText value="#{cst.cellphone_Customer}" />
+							</p:column>
+
+							<p:column headerText="Correo electrónico"
+								sortBy="#{cst.email_Customer}">
+								<h:outputText value="#{cst.email_Customer}" />
+							</p:column>
+
+							<p:column headerText="Notas" sortBy="#{cst.notes_Customer}">
+								<h:outputText value="#{cst.notes_Customer}" />
+							</p:column>
+
+							<p:column headerText="Operación" exportable="false">
+								<h:commandLink action="listCustomer" value="Eliminar"
+									actionListener="#{customerController.eliminar(cst)}" />
+							</p:column>
+							<p:column headerText="Operación" exportable="false">
+								<h:commandLink value="Modificar"
+									action="#{customerController.modifCus(cst)}" />
+							</p:column>
+
+						</p:dataTable>
+						<br />
+						<h:commandLink>
+							<p:outputLabel value="Exportar lista a Excel"></p:outputLabel>
+							<p:dataExporter type="xls" target="lstCustomer"
+								fileName="CustomerExcel" pageOnly="false"></p:dataExporter>
+						</h:commandLink>
+						<br />
+						<h:commandLink>
+							<p:outputLabel value="Exportar lista a Pdf"></p:outputLabel>
+							<p:dataExporter type="pdf" target="lstCustomer"
+								fileName="CustomerPdf" pageOnly="false"></p:dataExporter>
+						</h:commandLink>
+						
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

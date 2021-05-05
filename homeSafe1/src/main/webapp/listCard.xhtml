@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Tarjetas de Credito:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Tarjetas de Credito</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<p:commandButton value="Nuevo"
+							action="#{cardController.nuevoCard()}"
+							styleClass="btn btn-danger" ajax="false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCard" var="card"
+							value="#{cardController.listaCards}"
+							paginator="true" paginatorPosition="top"
+							rowsPerPageTemplate ="10,20,30,40,50" rows="10"
+							styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{card.ID_Card}">
+								<h:outputText value="#{card.ID_Card}" />
+							</p:column>
+
+							<p:column headerText="Número" sortBy="#{card.nro_Card}">
+								<h:outputText value="#{card.nro_Card}" />
+							</p:column>
+							
+							<p:column headerText="CVV" sortBy="#{card.CVV_Card}">
+								<h:outputText value="#{card.CVV_Card}" />
+							</p:column>
+							
+							<p:column headerText="Fecha Expiración"
+								sortBy="#{card.expiration_Card}">
+								<h:outputText value="#{card.expiration_Card}">
+									<f:convertDateTime pattern="MM-yyyy" timeZone="UTC" />
+								</h:outputText>
+							</p:column>
+							
+							<p:column headerText="Dueño" sortBy="#{card.owner.ID_Owner}">
+								<h:outputText value="#{card.owner.lastName_Owner}#{bac.owner.firstName_Owner}" />
+							</p:column>
+							
+							
+							<p:column headerText="Operación" exportable="false">
+
+								<h:commandLink action="lstCard" value="Eliminar"
+									actionListener="#{cardController.eliminar(card)}" />
+							</p:column>
+							
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

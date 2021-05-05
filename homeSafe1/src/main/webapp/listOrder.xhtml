@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <ui:composition
+	template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Ventas:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Ventas </span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <p:commandButton value="Nuevo"
+				action="#{orderController.nuevoOrder()}" styleClass="btn btn-danger"
+				ajax="false" /> </div> </div> </div>
+
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstOrder" var="ord" value="#{orderController.listaOrders}"
+				paginator="true" paginatorPosition="top"
+				rowsPerPageTemplate="10,20,30,40,50" rows="10"
+				styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
+
+				<p:column headerText="Id" sortBy="#{ord.ID_Order}">
+					<h:outputText value="#{ord.ID_Order}" />
+				</p:column>
+
+				<p:column headerText="Restaurante"
+					sortBy="#{ord.restaurant.ID_Restaurant}">
+					<h:outputText value="#{ord.restaurant.name_Restaurant}" />
+				</p:column>
+
+				<p:column headerText="Cliente" sortBy="#{ord.customer.ID_Customer}">
+					<h:outputText value="#{ord.customer.firstName_Customer}" />
+				</p:column>
+
+				<p:column headerText="Fecha de la orden" sortBy="#{ord.date_Order}">
+					<h:outputText value="#{ord.date_Order}">
+						<f:convertDateTime pattern="dd-MM-yyyy" timeZone="UTC" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Precio Total" sortBy="#{ord.price_Order}">
+					<h:outputText value="#{ord.price_Order}" />
+				</p:column>
+
+				<p:column headerText="Descuento" sortBy="#{ord.discount_Order}">
+					<h:outputText value="#{ord.discount_Order}" />
+				</p:column>
+				<p:column headerText="Notas" sortBy="#{ord.notes_Order}">
+					<h:outputText value="#{ord.notes_Order}" />
+				</p:column>
+
+				<p:column headerText="Operación" exportable="false">
+
+					<h:commandLink action="lstOrder" value="Eliminar"
+						actionListener="#{orderController.eliminar(ord)}" />
+				</p:column>
+
+			</p:dataTable> </div> </div> </div>
+
+		</h:form>
+
+	</ui:define>
+
+
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>
