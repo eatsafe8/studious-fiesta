@@ -45,7 +45,6 @@ public class Restaurant {
 	private String ClosingTime_Restaurant;
 	
 	@NotEmpty(message="Ingrese la categoría")
-	@Pattern(regexp = "[A-Za-z]*", message = "El campo Categoría solo acepta letras")
 	@Column(name = "Category_Restaurant", nullable = false, length = 50)
 	private String Category_Restaurant;
 	
@@ -64,7 +63,7 @@ public class Restaurant {
 			@NotEmpty(message = "Ingrese dirección") String address_Restaurant,
 			@NotEmpty(message = "Ingrese hora de abrir") String openingTime_Restaurant,
 			@NotEmpty(message = "Ingrese hora de cerrar") String closingTime_Restaurant,
-			@NotEmpty(message = "Ingrese la categoría") @Pattern(regexp = "[A-Za-z]*", message = "El campo Categoría solo acepta letras") String category_Restaurant,
+			@NotEmpty(message = "Ingrese la categoría") String category_Restaurant,
 			String notes_Restaurant, @NotNull(message = "Ingrese dueño") Owner owner) {
 		super();
 		ID_Restaurant = iD_Restaurant;
