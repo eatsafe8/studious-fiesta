@@ -240,7 +240,7 @@
 							<label for="Category_Restaurant"
 								class="col-sm-2 col-form-label">Categoría: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Category_Restaurant}"
+								<input type="text" th:field="*{Category_Restaurant}" pattern="^[a-zA-Z\s]{2,254}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

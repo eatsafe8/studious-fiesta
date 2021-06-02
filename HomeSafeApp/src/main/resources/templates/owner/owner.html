@@ -188,7 +188,7 @@
 							<label for="FirstName_Owner" class="col-sm-2 col-form-label">Nombres:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{FirstName_Owner}"
+								<input type="text" th:field="*{FirstName_Owner}" pattern="^[a-zA-Z\s]{2,254}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -201,7 +201,7 @@
 							<label for="LastName_Owner" class="col-sm-2 col-form-label">Apellidos:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{LastName_Owner}"
+								<input type="text" th:field="*{LastName_Owner}" pattern="^[a-zA-Z\s]{2,254}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -240,7 +240,7 @@
 							<label for="Country_Owner" class="col-sm-2 col-form-label">País:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Country_Owner}"
+								<input type="text" th:field="*{Country_Owner}" pattern="^[a-zA-Z\s]{2,254}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

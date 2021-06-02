@@ -2,6 +2,7 @@ package pe.edu.upc.entities;
 
 import javax.persistence.Column;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -27,12 +27,10 @@ public class Owner {
 	private String DNI_Owner;
 	
 	@NotEmpty(message="Ingrese nombres")
-	@Pattern(regexp = "[A-Za-z]*", message = "El campo Nombres solo acepta letras")
 	@Column(name = "FirstName_Owner", nullable = false, length = 50)
 	private String FirstName_Owner;
 	
 	@NotEmpty(message="Ingrese apellidos")
-	@Pattern(regexp = "[A-Za-z]*", message = "El campo Apellidos solo acepta letras")
 	@Column(name = "LastName_Owner", nullable = false, length = 50)
 	private String LastName_Owner;
 	
@@ -47,7 +45,6 @@ public class Owner {
 	private String Cellphone_Owner;
 	
 	@NotEmpty(message="Ingrese país")
-	@Pattern(regexp = "[A-Za-z]*", message = "El campo País solo acepta letras")
 	@Column(name = "Country_Owner", nullable = false, length = 50)
 	private String Country_Owner;
 
@@ -67,11 +64,11 @@ public class Owner {
 
 	public Owner(int iD_Owner,
 			@NotEmpty(message = "Ingrese DNI") @Digits(integer = 8, fraction = 0) @Size(min = 8, max = 8) String dNI_Owner,
-			@NotEmpty(message = "Ingrese nombres") @Pattern(regexp = "[A-Za-z]*", message = "El campo Nombres solo acepta letras") String firstName_Owner,
-			@NotEmpty(message = "Ingrese apellidos") @Pattern(regexp = "[A-Za-z]*", message = "El campo Apellidos solo acepta letras") String lastName_Owner,
+			@NotEmpty(message = "Ingrese nombres") String firstName_Owner,
+			@NotEmpty(message = "Ingrese apellidos")  String lastName_Owner,
 			@NotEmpty(message = "Ingrese dirección") String address_Owner,
 			@NotEmpty(message = "Ingrese celular") @Digits(integer = 9, fraction = 0) @Size(min = 9, max = 9) String cellphone_Owner,
-			@NotEmpty(message = "Ingrese país") @Pattern(regexp = "[A-Za-z]*", message = "El campo País solo acepta letras") String country_Owner,
+			@NotEmpty(message = "Ingrese país")  String country_Owner,
 			@NotEmpty(message = "Ingrese RUC") @Digits(integer = 11, fraction = 0) @Size(min = 11, max = 11) String rUC_Owner,
 			@NotEmpty(message = "Ingrese email") @Email String email_Owner, String notes_Owner) {
 		super();
