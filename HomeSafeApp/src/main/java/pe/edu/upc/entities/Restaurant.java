@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -44,6 +45,7 @@ public class Restaurant {
 	private String ClosingTime_Restaurant;
 	
 	@NotEmpty(message="Ingrese la categoría")
+	@Pattern(regexp = "[A-Za-z]*", message = "El campo Categoría solo acepta letras")
 	@Column(name = "Category_Restaurant", nullable = false, length = 50)
 	private String Category_Restaurant;
 	
@@ -55,13 +57,15 @@ public class Restaurant {
 	@JoinColumn(name = "ID_Owner", nullable = false)
 	private Owner owner;
 
+	
+
 	public Restaurant(int iD_Restaurant, @NotEmpty(message = "Ingrese el nombre") String name_Restaurant,
 			@NotEmpty(message = "Ingrese el aforo") @Digits(integer = 1000, fraction = 0) @Size(min = 1, max = 10) String aforo_Restaurant,
 			@NotEmpty(message = "Ingrese dirección") String address_Restaurant,
 			@NotEmpty(message = "Ingrese hora de abrir") String openingTime_Restaurant,
 			@NotEmpty(message = "Ingrese hora de cerrar") String closingTime_Restaurant,
-			@NotEmpty(message = "Ingrese la categoría") String category_Restaurant, String notes_Restaurant,
-			@NotNull(message = "Ingrese dueño") Owner owner) {
+			@NotEmpty(message = "Ingrese la categoría") @Pattern(regexp = "[A-Za-z]*", message = "El campo Categoría solo acepta letras") String category_Restaurant,
+			String notes_Restaurant, @NotNull(message = "Ingrese dueño") Owner owner) {
 		super();
 		ID_Restaurant = iD_Restaurant;
 		Name_Restaurant = name_Restaurant;

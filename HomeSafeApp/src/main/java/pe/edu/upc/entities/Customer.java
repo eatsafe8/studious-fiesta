@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -27,10 +28,12 @@ public class Customer {
 	private String DNI_Customer;
 	
 	@NotEmpty(message="Ingrese nombres")
+	@Pattern(regexp = "[A-Za-z]*", message = "El campo Nombres solo acepta letras")
 	@Column(name = "FirstName_Customer", nullable = false, length = 50)
 	private String FirstName_Customer;
 	
 	@NotEmpty(message="Ingrese apellidos")
+	@Pattern(regexp = "[A-Za-z]*", message = "El campo Apellidos solo acepta letras")
 	@Column(name = "LastName_Customer", nullable = false, length = 50)
 	private String LastName_Customer;
 	
@@ -52,13 +55,11 @@ public class Customer {
 	@Column(name = "Notes_Customer", nullable = true, length = 50)
 	private String Notes_Customer;
 
-
-
-
+	
 	public Customer(int iD_Customer,
 			@NotEmpty(message = "Ingrese DNI") @Digits(integer = 8, fraction = 0) @Size(min = 8, max = 8) String dNI_Customer,
-			@NotEmpty(message = "Ingrese nombres") String firstName_Customer,
-			@NotEmpty(message = "Ingrese apellidos") String lastName_Customer,
+			@NotEmpty(message = "Ingrese nombres") @Pattern(regexp = "[A-Za-z]*", message = "El campo Nombres solo acepta letras") String firstName_Customer,
+			@NotEmpty(message = "Ingrese apellidos") @Pattern(regexp = "[A-Za-z]*", message = "El campo Apellidos solo acepta letras") String lastName_Customer,
 			@NotEmpty(message = "Ingrese celular") @Digits(integer = 9, fraction = 0) @Size(min = 9, max = 9) String cellphone_Customer,
 			@NotEmpty(message = "Ingrese email") @Email String email_Customer,
 			@NotEmpty(message = "Ingrese dirección") String address_Customer, String notes_Customer) {

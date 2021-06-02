@@ -12,6 +12,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "Product")
@@ -22,6 +23,7 @@ public class Product {
 	private int ID_Product;
 	
 	@NotEmpty(message="Ingrese nombre")
+	@Pattern(regexp = "[A-Za-z]*", message = "El campo Nombre solo acepta letras")
 	@Column(name="Name_Product",length=50, nullable=false)
 	private String Name_Product;
 	
@@ -43,7 +45,13 @@ public class Product {
 	@Column(name="Notes_Product",length=50, nullable=true)
 	private String Notes_Product;
 
-	public Product(int iD_Product, String name_Product, float price_Product, int stock_Product, float discount_Product,
+	
+
+	public Product(int iD_Product,
+			@NotEmpty(message = "Ingrese nombre") @Pattern(regexp = "[A-Za-z]*", message = "El campo Nombre solo acepta letras") String name_Product,
+			@DecimalMin(value = "5.0", inclusive = false, message = "El precio mínimo es de 5 soles") @DecimalMax(value = "1000.0", inclusive = false, message = "El precio máximo es de 1000 soles") @NotNull(message = "Ingrese precio") float price_Product,
+			@Min(value = 1, message = "El stock mínimo es de 1") @Max(value = 100, message = "El stock máximo es de 1") @NotNull(message = "Ingrese stock") int stock_Product,
+			@DecimalMin(value = "0.0", inclusive = false, message = "El descuento mínimo es de 0%") @DecimalMax(value = "70.0", inclusive = false, message = "El descuento máximo es de 70%") @NotNull(message = "Ingrese descuento") float discount_Product,
 			String notes_Product) {
 		super();
 		ID_Product = iD_Product;
