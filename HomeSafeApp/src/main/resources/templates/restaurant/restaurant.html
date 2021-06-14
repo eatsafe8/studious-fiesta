@@ -189,7 +189,7 @@
 							<label for="Aforo_Restaurant" class="col-sm-2 col-form-label">Aforo:
 							</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{Aforo_Restaurant}"
+								<input type="number" min="1" pattern="^[0-9]+" th:field="*{Aforo_Restaurant}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -256,7 +256,7 @@
 									th:field="*{owner}">
 									<option th:each="owner : ${listaDuenos}"
 										th:value="${owner.ID_Owner}"
-										th:utext="${owner.LastName_Owner}" />
+										th:utext="${owner.FirstName_Owner}+' '+${owner.LastName_Owner}"/>
 								</select>
 							</div>
 						</div>
