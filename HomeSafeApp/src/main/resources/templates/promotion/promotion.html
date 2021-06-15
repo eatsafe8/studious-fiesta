@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>LISTA DUEÑOS</title>
+<title>AGREGAR PROMOCION</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -50,7 +50,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/owners/index}">
+				th:href="@{/promotions/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fa-solid fa-burger-glass"></i>
 				</div>
@@ -74,7 +74,8 @@
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
@@ -105,7 +106,8 @@
 					</div>
 
 				</div></li>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+			<hr class="sidebar-divider">
+			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -173,53 +175,87 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-
-
-					<h1 class="h3 mb-4 text-gray-800">Dueños</h1>
-
-					<a th:href="@{/owners/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">REGISTRO DE PROMOCIONES</h1>
 
 					<hr class="sidebar-divider">
 
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr align="center">
-								<th scope="col">Id</th>
-								<th scope="col">DNI</th>
-								<th scope="col">Nombres</th>
-								<th scope="col">Apellidos</th>
-								<th scope="col">Dirección</th>
-								<th scope="col">Celular</th>
-								<th scope="col">País</th>
-								<th scope="col">RUC</th>
-								<th scope="col">Email</th>
-								<th scope="col">Notas</th>
-								<th scope="col">Operacion</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr align="center" th:each="o: ${listaDuenos}">
-								<td th:text="${o.ID_Owner}"></td>
-								<td th:text="${o.DNI_Owner}"></td>
-								<td th:text="${o.FirstName_Owner}"></td>
-								<td th:text="${o.LastName_Owner}"></td>
-								<td th:text="${o.Address_Owner}"></td>
-								<td th:text="${o.Cellphone_Owner}"></td>
-								<td th:text="${o.Country_Owner}"></td>
-								<td th:text="${o.RUC_Owner}"></td>
-								<td th:text="${o.Email_Owner}"></td>
-								<td th:text="${o.Notes_Owner}"></td>
-								
-								<td><a th:href="@{/owners/delete?id=}+${o.ID_Owner}"
-									class="btn btn-danger btn-lg"><i class="fa fa-trash"
-										aria-hidden="true"></i></a></td>
 
+					<form th:action="@{/promotions/save}" th:object="${promotion}"
+						method="post">
+						
+						<div class="form-group row">
+							<label for="color" class="col-sm-2 col-form-label">Restaurante</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{restaurant}">
+									<option th:each="restaurant : ${listaRestaurantes}"
+										th:value="${restaurant.ID_Restaurant}"
+										th:utext="${restaurant.Name_Restaurant}" />
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="Name_Promotion" class="col-sm-2 col-form-label">Nombre:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{Name_Promotion}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Name_Promotion')}"
+									th:errors="*{Name_Promotion}"></small>
+							</div>
+						</div>
 
-							</tr>
-						</tbody>
-					</table>
+						<div class="form-group row">
+							<label for="PriceTotal_Promotion" class="col-sm-2 col-form-label">Precio Total:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{PriceTotal_Promotion}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('PriceTotal_Promotion')}"
+									th:errors="*{PriceTotal_Promotion}"></small>
+							</div>
+						</div>
 
-					<p th:text="${mensaje}"></p>
+						<div class="form-group row">
+							<label for="Stock_Promotion" class="col-sm-2 col-form-label">Stock:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{Stock_Promotion}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Stock_Promotion')}"
+									th:errors="*{Stock_Promotion}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="Notes_Promotion" class="col-sm-2 col-form-label">Notas:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{Notes_Promotion}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Notes_Promotion')}"
+									th:errors="*{Notes_Promotion}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/promotions/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+					</form>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -262,7 +298,7 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
 						<button class="btn btn-danger"

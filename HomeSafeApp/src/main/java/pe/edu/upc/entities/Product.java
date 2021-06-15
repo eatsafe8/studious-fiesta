@@ -35,7 +35,7 @@ public class Product {
 	private float Price_Product;
 
 	@Min(value = 1, message = "El stock mínimo es de 1")
-	@Max(value = 100, message = "El stock máximo es de 1")
+	@Max(value = 100, message = "El stock máximo es de 100")
 	@NotNull(message = "Ingrese stock")
 	private int Stock_Product;
 

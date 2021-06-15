@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>LISTA DUEÑOS</title>
+<title>LISTA PROMOCIONES</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -50,7 +50,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/owners/index}">
+				th:href="@{/products/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fa-solid fa-burger-glass"></i>
 				</div>
@@ -175,9 +175,9 @@
 					<!-- Page Heading -->
 
 
-					<h1 class="h3 mb-4 text-gray-800">Dueños</h1>
+					<h1 class="h3 mb-4 text-gray-800">Promociones</h1>
 
-					<a th:href="@{/owners/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<a th:href="@{/promotions/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -185,32 +185,25 @@
 						<thead class="thead-dark">
 							<tr align="center">
 								<th scope="col">Id</th>
-								<th scope="col">DNI</th>
-								<th scope="col">Nombres</th>
-								<th scope="col">Apellidos</th>
-								<th scope="col">Dirección</th>
-								<th scope="col">Celular</th>
-								<th scope="col">País</th>
-								<th scope="col">RUC</th>
-								<th scope="col">Email</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Precio Total</th>
+								<th scope="col">Stock</th>
+								<th scope="col">Restaurante</th>
 								<th scope="col">Notas</th>
 								<th scope="col">Operacion</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr align="center" th:each="o: ${listaDuenos}">
-								<td th:text="${o.ID_Owner}"></td>
-								<td th:text="${o.DNI_Owner}"></td>
-								<td th:text="${o.FirstName_Owner}"></td>
-								<td th:text="${o.LastName_Owner}"></td>
-								<td th:text="${o.Address_Owner}"></td>
-								<td th:text="${o.Cellphone_Owner}"></td>
-								<td th:text="${o.Country_Owner}"></td>
-								<td th:text="${o.RUC_Owner}"></td>
-								<td th:text="${o.Email_Owner}"></td>
-								<td th:text="${o.Notes_Owner}"></td>
+							<tr align="center" th:each="p: ${listaPromociones}">
+								<td th:text="${p.ID_Promotion}"></td>
+								<td th:text="${p.Name_Promotion}"></td>
+								<td th:text="${p.PriceTotal_Promotion}"></td>
+								<td th:text="${p.Stock_Promotion}"></td>
+								<td
+									th:text="${p.restaurant.Name_Restaurant}"></td>
+								<td th:text="${p.Notes_Promotion}"></td>
 								
-								<td><a th:href="@{/owners/delete?id=}+${o.ID_Owner}"
+								<td><a th:href="@{/promotions/delete?id=}+${p.ID_Promotion}"
 									class="btn btn-danger btn-lg"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>
 
