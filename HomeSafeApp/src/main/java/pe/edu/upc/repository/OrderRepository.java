@@ -8,4 +8,5 @@ import pe.edu.upc.entities.OrderT;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderT, Integer>{
 
+	
 }

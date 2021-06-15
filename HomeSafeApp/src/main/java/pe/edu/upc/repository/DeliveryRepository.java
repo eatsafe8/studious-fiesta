@@ -8,4 +8,5 @@ import pe.edu.upc.entities.Delivery;
 @Repository
 public interface DeliveryRepository extends JpaRepository<Delivery, Integer>{
 
+	
 }

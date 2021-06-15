@@ -24,6 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "Delivery")
 public class Delivery {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID_Delivery;

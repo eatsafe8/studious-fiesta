@@ -7,6 +7,7 @@ import pe.edu.upc.entities.OrderT;
 
 public interface IOrderService {
 
+	
 	public void insert(OrderT or);
 
 	List<OrderT> list();
