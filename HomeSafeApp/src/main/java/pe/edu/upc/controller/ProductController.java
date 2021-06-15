@@ -17,17 +17,21 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Product;
 import pe.edu.upc.service.IProductService;
+import pe.edu.upc.service.IRestaurantService;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
 	@Autowired
 	private IProductService pService;
+	@Autowired
+	private IRestaurantService rService;
 	
 	/*localhost:8082/owner/*/
 	@GetMapping("/new")
 	public String newProduct(Model model) {
 		model.addAttribute("product", new Product());
+		model.addAttribute("listaRestaurantes", rService.list());
 		return "product/product";
 	}
 	

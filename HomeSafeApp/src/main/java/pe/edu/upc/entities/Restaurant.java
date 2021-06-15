@@ -1,6 +1,7 @@
 package pe.edu.upc.entities;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -75,6 +75,28 @@ public class Restaurant {
 		Category_Restaurant = category_Restaurant;
 		Notes_Restaurant = notes_Restaurant;
 		this.owner = owner;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID_Restaurant;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Restaurant other = (Restaurant) obj;
+		if (ID_Restaurant != other.ID_Restaurant)
+			return false;
+		return true;
 	}
 
 	public Restaurant() {

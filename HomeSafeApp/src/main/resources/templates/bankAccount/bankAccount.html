@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>202101</title>
+<title>LISTA CUENTAS BANCARIAS</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -39,7 +39,7 @@
 			<span sec:authentication="name"></span>
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/bankAccounts/list}">
+				th:href="@{/bankAccounts/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -53,7 +53,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
+				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -61,6 +61,9 @@
 
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
@@ -87,7 +90,6 @@
 					</div>
 
 				</div></li>
-
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
@@ -180,7 +182,7 @@
 								<select class="custom-select custom-select-sm"
 									th:field="*{ID_Owner}">
 									<option th:each="owner : ${listaDuenos}"
-										th:value="${owner.ID_Owner}" th:utext="${owner.DNI_Owner}" />
+										th:value="${owner.ID_Owner}" th:utext="${owner.FirstName_Owner}+' '+${owner.LastName_Owner}" />
 								</select>
 							</div>
 						</div>

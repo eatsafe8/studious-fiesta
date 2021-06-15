@@ -39,7 +39,7 @@ public class Card {
 
 	@NotNull(message = "Ingrese la fecha de expiración")
 	@Future(message = "La fecha de expiración debe ser mayor a la fecha actual")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "Expiration_Card")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date Expiration_Card;

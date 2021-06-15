@@ -63,40 +63,47 @@
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item active"><a class="nav-link" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
-				aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>Men&uacute;</span>
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
+
 					<div class="bg-white py-2 collapse-inner rounded">
-						<i class="fas fa-user-tie"></i> <a class="collapse-item"
-							th:href="@{/owners/list}">Dueños</a>
+						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<i class="fas fa-user-circle"></i> <a class="collapse-item"
-							th:href="@{/customers/list}">Clientes</a>
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
-				</div> <!-- Divider -->
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<i class="fas fa-store"></i> <a class="collapse-item"
-							th:href="@{/restaurants/list}">Restaurantes</a>
+						<a class="collapse-item" th:href="@{/customers/list}">
+							Clientes</a>
 					</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<i class="fas fa-utensils"></i> <a class="collapse-item"
-							th:href="@{/products/list}">Productos</a>
+						<a class="collapse-item" th:href="@{/products/list}">
+							Productos</a>
 					</div>
-				</div>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/roundsmans/list}">
+							Repartidores</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/vehicles/list}">
+							Vehículos</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/cards/list}"> Tarjetas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/bankAccounts/list}">
+							Cuentas Bancarias</a>
+					</div>
+
+				</div></li>
+			<hr class="sidebar-divider">
+			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -189,8 +196,8 @@
 							<label for="Aforo_Restaurant" class="col-sm-2 col-form-label">Aforo:
 							</label>
 							<div class="col-sm-6">
-								<input type="number" min="1" pattern="^[0-9]+" th:field="*{Aforo_Restaurant}"
-									class="form-control"
+								<input type="number" min="1" pattern="^[0-9]+"
+									th:field="*{Aforo_Restaurant}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Aforo_Restaurant')}"
@@ -215,15 +222,15 @@
 							<label for="OpeningTime_Restaurant"
 								class="col-sm-2 col-form-label">Hora de Apertura: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{OpeningTime_Restaurant}"
-									class="form-control"
+								<input type="time" name="OpeningTime"
+									th:field="*{OpeningTime_Restaurant}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('OpeningTime_Restaurant')}"
 									th:errors="*{OpeningTime_Restaurant}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="ClosingTime_Restaurant"
 								class="col-sm-2 col-form-label">Hora de Cierre: </label>
@@ -237,18 +244,18 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="Category_Restaurant"
-								class="col-sm-2 col-form-label">Categoría: </label>
+							<label for="Category_Restaurant" class="col-sm-2 col-form-label">Categoría:
+							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Category_Restaurant}" pattern="^[a-zA-Z\s]{2,254}"
-									class="form-control"
+								<input type="text" th:field="*{Category_Restaurant}"
+									pattern="^[a-zA-Z\s]{2,254}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Category_Restaurant')}"
 									th:errors="*{Category_Restaurant}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="color" class="col-sm-2 col-form-label">Dueño</label>
 							<div class="col-sm-6">
@@ -256,7 +263,7 @@
 									th:field="*{owner}">
 									<option th:each="owner : ${listaDuenos}"
 										th:value="${owner.ID_Owner}"
-										th:utext="${owner.FirstName_Owner}+' '+${owner.LastName_Owner}"/>
+										th:utext="${owner.FirstName_Owner}+' '+${owner.LastName_Owner}" />
 								</select>
 							</div>
 						</div>
