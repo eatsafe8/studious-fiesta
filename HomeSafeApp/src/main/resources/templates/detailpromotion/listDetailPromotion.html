@@ -10,23 +10,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>LISTA PRODUCTOS</title>
+<title>LISTA DETALLE PROMOCIONES</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
-<link
-	href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" />
-<link
-	href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css"
-	rel="stylesheet" />
-<link
-	href="fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="/css/sb-admin-2.min.css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -50,9 +38,9 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/products/index}">
+				th:href="@{/detailpromotions/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fa-solid fa-burger-glass"></i>
+					<i class="fas fa-leaf"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">EAT SAFE</div>
 			</a>
@@ -62,54 +50,72 @@
 
 
 
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
+				aria-controls="collapseTwo"><i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Men&uacute;</span> </a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
+						<i class="fas fa-user-tie"></i> <a class="collapse-item"
+							th:href="@{/owners/list}">Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
+						<i class="fas fa-user-circle"></i> <a class="collapse-item"
+							th:href="@{/customers/list}">Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/customers/list}">
-							Clientes</a>
+						<i class="fas fa-store"></i> <a class="collapse-item"
+							th:href="@{/restaurants/list}">Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/list}">
-							Productos</a>
+						<i class="fas fa-utensils"></i> <a class="collapse-item"
+							th:href="@{/products/list}">Productos</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/promotions/list}">
-							Promociones</a>
+						<i class="fas fa-utensils"></i> <a class="collapse-item"
+							th:href="@{/promotions/list}">Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/detailpromotions/list}">
-							Detalle Promociones</a>
+						<i class="fas fa-utensils"></i> <a class="collapse-item"
+							th:href="@{/detailpromotions/list}">Detalle Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/roundsmans/list}">
-							Repartidores</a>
+						<i class="fas fa-portrait"></i> <a class="collapse-item"
+							th:href="@{/roundsmans/list}">Repartidores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">
-							Vehículos</a>
+						<i class="fas fa-motorcycle"></i> <a class="collapse-item"
+							th:href="@{/vehicles/list}">Vehiculos</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cards/list}"> Tarjetas</a>
+						<i class="fas fa-address-card"></i> <a class="collapse-item"
+							th:href="@{/cards/list}">Tarjetas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankAccounts/list}">
-							Cuentas Bancarias</a>
+						<i class="fas fa-university"></i> <a class="collapse-item"
+							th:href="@{/bankAccounts/list}">Cuenta Bancaria</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-file"></i> <a class="collapse-item"
+							th:href="@{/orders/list}">Ordenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-clipboard"></i> <a class="collapse-item"
+							th:href="@{/deliveries/list}">Delivery</a>
+					</div>
 				</div></li>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+
+
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Sidebar Toggler (Sidebar) -->
+
+
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -152,7 +158,6 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
-
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -161,8 +166,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="specialties/list"
+									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -177,48 +182,41 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
+					<div class="col-sm-12">
+						<h1 class="h3 mb-4 text-gray-800">Detalle Promociones</h1>
 
 
-					<h1 class="h3 mb-4 text-gray-800">Productos</h1>
+						<a th:href="@{/detailpromotions/new/}"
+							class="btn btn-danger btn-xs">Nuevo</a>
 
-					<a th:href="@{/products/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+						<hr class="sidebar-divider">
 
-					<hr class="sidebar-divider">
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr align="center">
+									<th scope="col">Id</th>
+									<th scope="col">Promocion</th>
+									<th scope="col">Producto</th>
+									<th scope="col">Cantidad</th>
+									<th scope="col">OP</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr align="center" th:each="d: ${listaDetallePromociones}">
+									<td th:text="${d.ID_DetailPromotion}"></td>
+									<td th:text="${d.promotion.Name_Promotion}"></td>
+									<td th:text="${d.product.Name_Product}"></td>
+									<td th:text="${d.Quantity_DetailPromotion}"></td>
+									<td><a
+										th:href="@{/detailpromotions/delete?id=}+${d.ID_DetailPromotion}"
+										class="btn btn-danger"><i class="fa fa-trash"
+											aria-hidden="true"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
 
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr align="center">
-								<th scope="col">Id</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Precio</th>
-								<th scope="col">Stock</th>
-								<th scope="col">Descuento</th>
-								<th scope="col">Restaurante</th>
-								<th scope="col">Notas</th>
-								<th scope="col">Operacion</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr align="center" th:each="p: ${listaProductos}">
-								<td th:text="${p.ID_Product}"></td>
-								<td th:text="${p.Name_Product}"></td>
-								<td th:text="${p.Price_Product}"></td>
-								<td th:text="${p.Stock_Product}"></td>
-								<td th:text="${p.Discount_Product}"></td>
-								<td
-									th:text="${p.restaurant.Name_Restaurant}"></td>
-								<td th:text="${p.Notes_Product}"></td>
-								
-								<td><a th:href="@{/products/delete?id=}+${p.ID_Product}"
-									class="btn btn-danger btn-lg"><i class="fa fa-trash"
-										aria-hidden="true"></i></a></td>
-
-
-							</tr>
-						</tbody>
-					</table>
-
-					<p th:text="${mensaje}"></p>
+						<p th:text="${mensaje}"></p>
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -230,7 +228,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; TF PROGRAWEB 2021-01</span>
+						<span>Copyright &copy; Web 202101</span>
 					</div>
 				</div>
 			</footer>
@@ -268,7 +266,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/categories/list}">Cancel</button>
+							th:href="@{/detailpromotions/list}">Cancel</button>
 					</form>
 				</div>
 			</div>
