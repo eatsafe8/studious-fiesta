@@ -36,14 +36,14 @@ public class OrderT {
 	@JoinColumn(name = "ID_Customer", nullable = false)
 	private Customer ID_Customer;
 	
-	@DecimalMin(value="5.0",inclusive = false,message = "El precio mínimo es de 5 soles")
-    @DecimalMax(value="1000.0",inclusive = false,message = "El precio máximo es de 1000 soles")
+	@DecimalMin(value="5.0",inclusive = true,message = "El precio mínimo es de 5 soles")
+    @DecimalMax(value="1000.0",inclusive = true,message = "El precio máximo es de 1000 soles")
 	@NotNull(message="Ingrese PRECIO")
 	@Column(name = "Price_Order", nullable =false , length=50)
 	private float Price_Order;
 	
-	@DecimalMin(value="0.0",inclusive = false,message = "El descuento mínimo es de 0%")
-    @DecimalMax(value="70.0",inclusive = false,message = "El descuento máximo es de 70%")
+	@DecimalMin(value="0.0",inclusive = true,message = "El descuento mínimo es de 0%")
+    @DecimalMax(value="70.0",inclusive = true,message = "El descuento máximo es de 70%")
 	@NotNull(message="Ingrese DESCUENTO")
 	@Column(name = "Discount_Price", nullable =false , length=50)
 	private float Discount_Price;

@@ -51,7 +51,7 @@
 
 
 
-		<!-- Nav Item - Pages Collapse Menu -->
+			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
@@ -63,11 +63,12 @@
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -76,6 +77,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/promotions/list}">
 							Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detailpromotions/list}">
+							Detalle Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roundsmans/list}">
@@ -92,7 +97,21 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
 				</div></li>
 
 			<!-- Divider -->
@@ -196,8 +215,7 @@
 							<label for="firstnameRoundsman" class="col-sm-2 col-form-label">Nombre:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{FirstName_Roundsman}"
-									class="form-control"
-									pattern="^[a-zA-Z\s]{2,254}"
+									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
 									title="El campo NOMBRE solo acepta letras"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -205,13 +223,12 @@
 									th:errors="*{FirstName_Roundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="lastnameRoundsman" class="col-sm-2 col-form-label">Apellido:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{LastName_Roundsman}"
-									class="form-control"
-									pattern="^[a-zA-Z\s]{2,254}"
+									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
 									title="El campo APELLIDO solo acepta letras"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -219,7 +236,7 @@
 									th:errors="*{LastName_Roundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="adressRoundsman" class="col-sm-2 col-form-label">Direccion:</label>
 							<div class="col-sm-6">
@@ -231,7 +248,7 @@
 									th:errors="*{Adress_Roundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="cellphoneRoundsman" class="col-sm-2 col-form-label">Celular:</label>
 							<div class="col-sm-6">
@@ -243,22 +260,22 @@
 									th:errors="*{Cellphone_Roundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="sexRoundsman" class="col-sm-2 col-form-label">Sexo:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{Sex_Roundsman}"
-									class="form-control"
-									placeholder="M:Masculino - F:Femenino"
+									class="form-control" placeholder="M:Masculino - F:Femenino"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Sex_Roundsman')}"
 									th:errors="*{Sex_Roundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="birthDateRoundsman" class="col-sm-2 col-form-label">Fecha Nacimiento: </label>
+							<label for="birthDateRoundsman" class="col-sm-2 col-form-label">Fecha
+								Nacimiento: </label>
 							<div class="col-sm-6">
 								<input type="date" th:field="*{DateBirth_Roundsman}"
 									class="form-control"
@@ -268,7 +285,7 @@
 									th:errors="*{DateBirth_Roundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="stateRoundsman" class="col-sm-2 col-form-label">Estado:</label>
 							<div class="col-sm-6">
@@ -281,7 +298,7 @@
 									th:errors="*{StateRoundsman}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="notesRoundsman" class="col-sm-2 col-form-label">Notas:</label>
 							<div class="col-sm-6">

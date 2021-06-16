@@ -4,7 +4,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.apache.tomcat.jni.OS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.DetailPromotion;
-import pe.edu.upc.entities.OrderT;
 import pe.edu.upc.service.IDetailPromotionService;
 import pe.edu.upc.service.IProductService;
 import pe.edu.upc.service.IPromotionService;

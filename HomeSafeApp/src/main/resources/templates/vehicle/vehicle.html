@@ -51,7 +51,7 @@
 
 
 
-		<!-- Nav Item - Pages Collapse Menu -->
+			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
@@ -63,11 +63,12 @@
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -76,6 +77,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/promotions/list}">
 							Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detailpromotions/list}">
+							Detalle Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roundsmans/list}">
@@ -92,8 +97,24 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
 				</div></li>
+
+
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
@@ -179,7 +200,7 @@
 
 					<form th:action="@{/vehicles/save}" th:object="${vehicle}"
 						method="post">
-						
+
 						<div class="form-group row">
 							<label for="roundsmans" class="col-sm-2 col-form-label">Repartidor</label>
 							<div class="col-sm-6">
@@ -191,13 +212,12 @@
 								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="brandVehicle" class="col-sm-2 col-form-label">Marca:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{Brand_Vehicle}"
-									class="form-control"
-									pattern="^[a-zA-Z\s]{2,254}"
+									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
 									title="El campo MARCA solo acepta letras"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -205,13 +225,12 @@
 									th:errors="*{Brand_Vehicle}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="colourVehicle" class="col-sm-2 col-form-label">Color:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{Colour_Vehicle}"
-									class="form-control"
-									pattern="^[a-zA-Z\s]{2,254}"
+									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
 									title="El campo COLOR solo acepta letras"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -219,13 +238,12 @@
 									th:errors="*{Colour_Vehicle}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="typeVehicle" class="col-sm-2 col-form-label">Tipo:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{Type_Vehicle}"
-									class="form-control"
-									pattern="^[a-zA-Z\s]{2,254}"
+									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
 									title="El campo TIPO solo acepta letras"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -233,9 +251,10 @@
 									th:errors="*{Type_Vehicle}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="licenseVehicle" class="col-sm-2 col-form-label">Número de Placa:</label>
+							<label for="licenseVehicle" class="col-sm-2 col-form-label">Número
+								de Placa:</label>
 							<div class="col-sm-6">
 								<input autofocus type="text" th:field="*{LicenseNumber_Vehicle}"
 									class="form-control"
@@ -245,7 +264,7 @@
 									th:errors="*{LicenseNumber_Vehicle}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="notesVehicle" class="col-sm-2 col-form-label">Notas:</label>
 							<div class="col-sm-6">

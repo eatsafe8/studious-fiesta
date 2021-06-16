@@ -75,6 +75,14 @@
 							th:href="@{/products/list}">Productos</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-utensils"></i> <a class="collapse-item"
+							th:href="@{/promotions/list}">Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-utensils"></i> <a class="collapse-item"
+							th:href="@{/detailpromotions/list}">Detalle Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<i class="fas fa-portrait"></i> <a class="collapse-item"
 							th:href="@{/roundsmans/list}">Repartidores</a>
 					</div>
@@ -101,6 +109,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<i class="fas fa-edit"></i> <a class="collapse-item"
 							th:href="@{/orderProms/list}">Orden Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-edit"></i> <a class="collapse-item"
+							th:href="@{/orderDetails/list}">Orden Producto</a>
 					</div>
 				</div></li>
 
@@ -206,10 +218,12 @@
 									<td th:text="${v.Quantity_OrderProm}"></td>
 									<td th:text="${v.Notes_OrderProm}"></td>
 
-									<td><a th:href="@{/orderProms/delete?id=}+${v.ID_OrderProm}"
+									<td><a
+										th:href="@{/orderProms/delete?id=}+${v.ID_OrderProm}"
 										class="btn btn-danger"><i class="fa fa-trash"
 											aria-hidden="true"></i></a></td>
-									<td><a th:href="@{'/orderProms/detalle/'+${v.ID_OrderProm}}"
+									<td><a
+										th:href="@{'/orderProms/detalle/'+${v.ID_OrderProm}}"
 										class="btn btn-danger"><i class="fa fa-pen"
 											aria-hidden="true"></i></a></td>
 								</tr>

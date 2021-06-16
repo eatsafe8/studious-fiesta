@@ -74,11 +74,12 @@
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -87,6 +88,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/promotions/list}">
 							Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detailpromotions/list}">
+							Detalle Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roundsmans/list}">
@@ -103,9 +108,26 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
 				</div></li>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+
+
+			<hr class="sidebar-divider">
+			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -199,11 +221,11 @@
 								<td th:text="${p.Name_Promotion}"></td>
 								<td th:text="${p.PriceTotal_Promotion}"></td>
 								<td th:text="${p.Stock_Promotion}"></td>
-								<td
-									th:text="${p.restaurant.Name_Restaurant}"></td>
+								<td th:text="${p.restaurant.Name_Restaurant}"></td>
 								<td th:text="${p.Notes_Promotion}"></td>
-								
-								<td><a th:href="@{/promotions/delete?id=}+${p.ID_Promotion}"
+
+								<td><a
+									th:href="@{/promotions/delete?id=}+${p.ID_Promotion}"
 									class="btn btn-danger btn-lg"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>
 

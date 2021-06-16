@@ -29,8 +29,8 @@ public class Product {
 	@Column(name = "Name_Product", length = 50, nullable = false)
 	private String Name_Product;
 
-	@DecimalMin(value = "5.0", inclusive = false, message = "El precio mínimo es de 5 soles")
-	@DecimalMax(value = "1000.0", inclusive = false, message = "El precio máximo es de 1000 soles")
+	@DecimalMin(value = "5.0", inclusive = true, message = "El precio mínimo es de 5 soles")
+	@DecimalMax(value = "1000.0", inclusive = true, message = "El precio máximo es de 1000 soles")
 	@NotNull(message = "Ingrese precio")
 	private float Price_Product;
 
@@ -39,8 +39,8 @@ public class Product {
 	@NotNull(message = "Ingrese stock")
 	private int Stock_Product;
 
-	@DecimalMin(value = "0.0", inclusive = false, message = "El descuento mínimo es de 0%")
-	@DecimalMax(value = "70.0", inclusive = false, message = "El descuento máximo es de 70%")
+	@DecimalMin(value = "0.0", inclusive = true, message = "El descuento mínimo es de 0%")
+	@DecimalMax(value = "70.0", inclusive = true, message = "El descuento máximo es de 70%")
 	@NotNull(message = "Ingrese descuento")
 	private float Discount_Product;
 

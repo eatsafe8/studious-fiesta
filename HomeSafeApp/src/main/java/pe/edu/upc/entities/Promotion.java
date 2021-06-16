@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -26,7 +25,7 @@ public class Promotion {
 	@Column(name = "Name_Promotion", length = 50, nullable = false)
 	private String Name_Promotion;
 
-	@DecimalMin(value = "0.0", inclusive = false, message = "El precio total mínimo es 0")
+	@DecimalMin(value = "0.0", inclusive = true, message = "El precio total mínimo es 0")
 	@NotNull(message = "Ingrese Precio Total")
 	private float PriceTotal_Promotion;
 

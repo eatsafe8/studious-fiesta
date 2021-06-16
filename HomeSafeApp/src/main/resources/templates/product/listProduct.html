@@ -74,11 +74,12 @@
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -107,9 +108,26 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
 				</div></li>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+
+
+			<hr class="sidebar-divider">
+			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -205,10 +223,9 @@
 								<td th:text="${p.Price_Product}"></td>
 								<td th:text="${p.Stock_Product}"></td>
 								<td th:text="${p.Discount_Product}"></td>
-								<td
-									th:text="${p.restaurant.Name_Restaurant}"></td>
+								<td th:text="${p.restaurant.Name_Restaurant}"></td>
 								<td th:text="${p.Notes_Product}"></td>
-								
+
 								<td><a th:href="@{/products/delete?id=}+${p.ID_Product}"
 									class="btn btn-danger btn-lg"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>

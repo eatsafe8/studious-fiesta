@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>AGREGAR DETALLE PROMOCI+ON</title>
+<title>AGREGAR DETALLE PROMOCIÓN</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -52,9 +52,9 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"><i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Men&uacute;</span> </a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -104,6 +104,14 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<i class="fas fa-clipboard"></i> <a class="collapse-item"
 							th:href="@{/deliveries/list}">Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-edit"></i> <a class="collapse-item"
+							th:href="@{/orderProms/list}">Orden Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<i class="fas fa-edit"></i> <a class="collapse-item"
+							th:href="@{/orderDetails/list}">Orden Producto</a>
 					</div>
 				</div></li>
 
