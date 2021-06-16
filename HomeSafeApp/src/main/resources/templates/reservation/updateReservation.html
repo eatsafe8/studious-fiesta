@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
 
 <meta charset="utf-8">
@@ -11,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>AGREGAR REPARTIDOR</title>
+<title>MODIFICAR RESERVACION</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -39,7 +38,7 @@
 			<span sec:authentication="name"></span>
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/roundsmans/list}">
+				th:href="@{/reservations/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -54,11 +53,10 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
+				aria-controls="collapseTwo"><i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Men&uacute;</span> </a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-
 					<div class="bg-white py-2 collapse-inner rounded">
 						<i class="fas fa-user-tie"></i> <a class="collapse-item"
 							th:href="@{/owners/list}">Dueños</a>
@@ -194,134 +192,103 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Repartidor</h1>
+					<h1 class="h3 mb-4 text-gray-800">MODIFICAR RESERVACION</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${roundsman}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
-					</div>
 
-					<form th:action="@{/roundsmans/save}" th:object="${roundsman}"
+
+					<form th:action="@{/reservations/save}" th:object="${reservation}"
 						method="post">
+						
 						<div class="form-group row">
-							<label for="DNI" class="col-sm-2 col-form-label">DNI</label>
+							<label for="ID" class="col-sm-2 col-form-label">ID:</label>
 							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{DNI_Roundsman}"
+								<input autofocus type="text" readonly="readonly"
+									th:field="*{ID_Reservation}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('ID_Reservation')}"
+									th:errors="*{ID_Reservation}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="restaurant" class="col-sm-2 col-form-label">Restaurante:</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{ID_Restaurant}">
+									<option th:each="restaurant : ${listaRestaurantes}"
+										th:value="${restaurant.ID_Restaurant}"
+										th:utext="${restaurant.Name_Restaurant}" />
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{ID_Customer}">
+									<option th:each="customer : ${listaClientes}"
+										th:value="${customer.ID_Customer}"
+										th:utext="${customer.DNI_Customer}" />
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="dateReservation" class="col-sm-2 col-form-label">Fecha
+								de reserva: </label>
+							<div class="col-sm-6">
+								<input type="date" th:field="*{Date_Reservation}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Date_Reservation')}"
+									th:errors="*{Date_Reservation}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="timeReservation"
+								class="col-sm-2 col-form-label">Hora reserva: </label>
+							<div class="col-sm-6">
+								<input type="time"
+									th:field="*{Time_Reservation}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Time_Reservation')}"
+									th:errors="*{Time_Reservation}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="NroPersons" class="col-sm-2 col-form-label">Nro Personas:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{NroPersons_Reservation}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('DNI_Roundsman')}"
-									th:errors="*{DNI_Roundsman}"></small>
+									th:if="${#fields.hasErrors('NroPersons_Reservation')}"
+									th:errors="*{NroPersons_Reservation}"></small>
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="firstnameRoundsman" class="col-sm-2 col-form-label">Nombre:</label>
+							<label for="NotesReservation" class="col-sm-2 col-form-label">Notas:</label>
 							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{FirstName_Roundsman}"
-									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
-									title="El campo NOMBRE solo acepta letras"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('FirstName_Roundsman')}"
-									th:errors="*{FirstName_Roundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="lastnameRoundsman" class="col-sm-2 col-form-label">Apellido:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{LastName_Roundsman}"
-									class="form-control" pattern="^[a-zA-Z\s]{2,254}"
-									title="El campo APELLIDO solo acepta letras"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('LastName_Roundsman')}"
-									th:errors="*{LastName_Roundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="adressRoundsman" class="col-sm-2 col-form-label">Direccion:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{Adress_Roundsman}"
+								<input autofocus type="text" th:field="*{Notes_Reservation}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Adress_Roundsman')}"
-									th:errors="*{Adress_Roundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="cellphoneRoundsman" class="col-sm-2 col-form-label">Celular:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{Cellphone_Roundsman}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Cellphone_Roundsman')}"
-									th:errors="*{Cellphone_Roundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="sexRoundsman" class="col-sm-2 col-form-label">Sexo:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{Sex_Roundsman}"
-									class="form-control" placeholder="M:Masculino - F:Femenino"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Sex_Roundsman')}"
-									th:errors="*{Sex_Roundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="birthDateRoundsman" class="col-sm-2 col-form-label">Fecha
-								Nacimiento: </label>
-							<div class="col-sm-6">
-								<input type="date" th:field="*{DateBirth_Roundsman}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('DateBirth_Roundsman')}"
-									th:errors="*{DateBirth_Roundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="stateRoundsman" class="col-sm-2 col-form-label">Estado:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{StateRoundsman}"
-									class="form-control"
-									placeholder="D:Disponible - ND:No Disponible"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('StateRoundsman')}"
-									th:errors="*{StateRoundsman}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="notesRoundsman" class="col-sm-2 col-form-label">Notas:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{Notes_Roundsman}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Notes_Roundsman')}"
-									th:errors="*{Notes_Roundsman}"></small>
+									th:if="${#fields.hasErrors('Notes_Reservation')}"
+									th:errors="*{Notes_Reservation}"></small>
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/roundsmans/list" class="btn btn-danger">Cancelar</a>
+								<a href="/reservations/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
@@ -375,7 +342,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/roundsman/list}">Cancel</button>
+							th:href="@{/reservations/list}">Cancel</button>
 					</form>
 				</div>
 			</div>
