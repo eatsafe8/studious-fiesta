@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,5 +75,23 @@ public class RestaurantController {
 			// TODO: handle exception
 		}
 		return "redirect:/restaurants/list";
+	}
+	
+	@GetMapping("/detalle/{id}")
+	public String viewRestaurant(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Restaurant> restaurant = rService.listarID(id);
+			if(!restaurant.isPresent()) {
+				model.addAttribute("mensaje","Restaurante no existe");
+				return "redirect:/restaurants/list";
+			}
+			else {
+				model.addAttribute("restaurant",restaurant.get());
+				return "restaurant/updateRestaurant";
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "restaurant/updateRestaurant";
 	}
 }

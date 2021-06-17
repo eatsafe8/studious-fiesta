@@ -1,11 +1,13 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.Customer;
+import pe.edu.upc.entities.Roundsman;
 import pe.edu.upc.repository.CustomerRepository;
 import pe.edu.upc.service.ICustomerService;
 
@@ -27,5 +29,11 @@ public class CustomerServiceImpl implements ICustomerService{
 	@Override
 	public void delete(int id) {
 		cR.deleteById(id);
+	}
+	
+	@Override
+	public Optional<Customer> listarID(int ID_Customer) {
+		// TODO Auto-generated method stub
+		return cR.findById(ID_Customer);
 	}
 }

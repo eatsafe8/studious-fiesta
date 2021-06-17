@@ -44,7 +44,7 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -69,6 +69,12 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+					</div>
 
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
@@ -116,12 +122,27 @@
 							Delivery</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservations/list}">
+							Reservaciones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/orderProms/list}">
 							Ordenes de Promocion</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/orderDetails/list}">
 							Ordenes de Producto</a>
+					</div>
+				</div></li>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
+							Productos</a>
 					</div>
 				</div></li>
 
@@ -217,6 +238,7 @@
 								<th scope="col">Email</th>
 								<th scope="col">Notas</th>
 								<th scope="col">Operacion</th>
+								<th scope="col">Operacion</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -234,6 +256,10 @@
 
 								<td><a th:href="@{/owners/delete?id=}+${o.ID_Owner}"
 									class="btn btn-danger btn-lg"><i class="fa fa-trash"
+										aria-hidden="true"></i></a></td>
+								<td><a
+									th:href="@{'/owners/detalle/'+${o.ID_Owner}}"
+									class="btn btn-danger"><i class="fa fa-pen"
 										aria-hidden="true"></i></a></td>
 
 

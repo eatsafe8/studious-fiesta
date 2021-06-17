@@ -1,10 +1,14 @@
 package pe.edu.upc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.el.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,6 +52,7 @@ public class ProductController {
 			return "redirect:/products/list";
 		}
 	}
+	
 	@GetMapping("/list")
 	public String listProduct(Model model) {
 		try {
@@ -58,6 +63,7 @@ public class ProductController {
 		}
 		return "product/listProduct";
 	}
+	
 	//para editar o modificar es request pero solo lectura se usa get?
 	@RequestMapping("/delete")
 	public String deleteProduct(Map<String, Object> model, @RequestParam(value="id") Integer id) {
@@ -72,5 +78,37 @@ public class ProductController {
 			// TODO: handle exception
 		}
 		return "redirect:/products/list";
+	}
+	
+	@GetMapping("/listFind")
+	public String listProductFind(Model model) {
+		try {
+			model.addAttribute("product", new Product());
+			model.addAttribute("listaProductos", pService.list());
+
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "product/find";
+	}
+
+	@RequestMapping("/find")
+	public String findByProduct(Model model, @ModelAttribute Product product) throws ParseException {
+		List<Product> listaProductos = new ArrayList<Product>();
+		product.setNameProduct(product.getNameProduct());
+		model.addAttribute("product", new Product());
+
+		if (listaProductos.isEmpty()) {
+			listaProductos = pService.searchNameIgnoreCase(product.getNameProduct());
+		}
+		if (listaProductos.isEmpty()) {
+			listaProductos = pService.findByName(product.getNameProduct());
+		}
+		if (listaProductos.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontró");
+		}
+		
+		model.addAttribute("listaProductos", listaProductos);
+		return "product/find";
 	}
 }

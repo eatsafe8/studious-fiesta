@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,11 @@ public class RestaurantServiceImpl implements IRestaurantService{
 	@Override
 	public void delete(int id) {
 		rR.deleteById(id);
+	}
+	
+	@Override
+	public Optional<Restaurant> listarID(int ID_Restaurant) {
+		// TODO Auto-generated method stub
+		return rR.findById(ID_Restaurant);
 	}
 }

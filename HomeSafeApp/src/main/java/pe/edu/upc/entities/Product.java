@@ -26,8 +26,8 @@ public class Product {
 	private int ID_Product;
 
 	@NotEmpty(message = "Ingrese nombre")
-	@Column(name = "Name_Product", length = 50, nullable = false)
-	private String Name_Product;
+	@Column(name = "nameProduct", length = 50, nullable = false)
+	private String nameProduct;
 
 	@DecimalMin(value = "5.0", inclusive = true, message = "El precio mínimo es de 5 soles")
 	@DecimalMax(value = "1000.0", inclusive = true, message = "El precio máximo es de 1000 soles")
@@ -62,14 +62,16 @@ public class Product {
 		this.restaurant = restaurant;
 	}
 
-	public Product(int iD_Product, @NotEmpty(message = "Ingrese nombre") String name_Product,
-			@DecimalMin(value = "5.0", inclusive = false, message = "El precio mínimo es de 5 soles") @DecimalMax(value = "1000.0", inclusive = false, message = "El precio máximo es de 1000 soles") @NotNull(message = "Ingrese precio") float price_Product,
-			@Min(value = 1, message = "El stock mínimo es de 1") @Max(value = 100, message = "El stock máximo es de 1") @NotNull(message = "Ingrese stock") int stock_Product,
-			@DecimalMin(value = "0.0", inclusive = false, message = "El descuento mínimo es de 0%") @DecimalMax(value = "70.0", inclusive = false, message = "El descuento máximo es de 70%") @NotNull(message = "Ingrese descuento") float discount_Product,
+
+
+	public Product(int iD_Product, @NotEmpty(message = "Ingrese nombre") String nameProduct,
+			@DecimalMin(value = "5.0", inclusive = true, message = "El precio mínimo es de 5 soles") @DecimalMax(value = "1000.0", inclusive = true, message = "El precio máximo es de 1000 soles") @NotNull(message = "Ingrese precio") float price_Product,
+			@Min(value = 1, message = "El stock mínimo es de 1") @Max(value = 100, message = "El stock máximo es de 100") @NotNull(message = "Ingrese stock") int stock_Product,
+			@DecimalMin(value = "0.0", inclusive = true, message = "El descuento mínimo es de 0%") @DecimalMax(value = "70.0", inclusive = true, message = "El descuento máximo es de 70%") @NotNull(message = "Ingrese descuento") float discount_Product,
 			String notes_Product, @NotNull(message = "Ingrese restaurante") Restaurant restaurant) {
 		super();
 		ID_Product = iD_Product;
-		Name_Product = name_Product;
+		this.nameProduct = nameProduct;
 		Price_Product = price_Product;
 		Stock_Product = stock_Product;
 		Discount_Product = discount_Product;
@@ -90,12 +92,14 @@ public class Product {
 		ID_Product = iD_Product;
 	}
 
-	public String getName_Product() {
-		return Name_Product;
+	
+
+	public String getNameProduct() {
+		return nameProduct;
 	}
 
-	public void setName_Product(String name_Product) {
-		Name_Product = name_Product;
+	public void setNameProduct(String nameProduct) {
+		this.nameProduct = nameProduct;
 	}
 
 	public float getPrice_Product() {

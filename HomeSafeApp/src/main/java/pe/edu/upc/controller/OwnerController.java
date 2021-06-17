@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.entities.Customer;
 import pe.edu.upc.entities.Owner;
 import pe.edu.upc.service.IOwnerService;
 
@@ -69,4 +72,23 @@ public class OwnerController {
 		}
 		return "redirect:/owners/list";
 	}
+	
+	@GetMapping("/detalle/{id}")
+	public String viewOwner(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Owner> owner = oService.listarID(id);
+			if(!owner.isPresent()) {
+				model.addAttribute("mensaje","Owner no existe");
+				return "redirect:/owners/list";
+			}
+			else {
+				model.addAttribute("owner",owner.get());
+				return "owner/updateOwner";
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "owner/updateOwner";
+	}
+	
 }
