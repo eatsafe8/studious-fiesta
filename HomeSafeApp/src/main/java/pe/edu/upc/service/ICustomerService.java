@@ -11,6 +11,10 @@ public interface ICustomerService {
 	List<Customer> list();
 
 	public void delete(int id);
-	
+
 	Optional<Customer> listarID(int ID_Customer);
+
+	List<Customer> searchDniIgnoreCase(String dniCustomer);
+
+	List<Customer> findByDni(String dniCustomer);
 }

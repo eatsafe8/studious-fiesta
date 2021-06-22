@@ -131,6 +131,10 @@
 						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
 							Productos</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
 				</div></li>
 
 			<!-- Divider -->
@@ -230,11 +234,11 @@
 						<div class="form-group row">
 							<label for="DNI" class="col-sm-2 col-form-label">DNI: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{DNI_Customer}" class="form-control"
+								<input type="text" th:field="*{dniCustomer}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('DNI_Customer')}"
-									th:errors="*{DNI_Customer}"></small>
+									th:if="${#fields.hasErrors('dniCustomer')}"
+									th:errors="*{dniCustomer}"></small>
 							</div>
 						</div>
 						

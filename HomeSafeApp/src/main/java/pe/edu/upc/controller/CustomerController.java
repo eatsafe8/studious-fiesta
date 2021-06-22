@@ -1,10 +1,13 @@
 package pe.edu.upc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.apache.el.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,5 +91,36 @@ public class CustomerController {
 			System.out.println(e.getMessage());
 		}
 		return "customer/updateCustomer";
+	}
+	
+	@GetMapping("/listFind")
+	public String listCustomerFind(Model model) {
+		try {
+			model.addAttribute("customer", new Customer());
+			model.addAttribute("listaClientes",cService.list());
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "customer/find";
+	}
+
+	@RequestMapping("/find")
+	public String findByCustomer(Model model, @ModelAttribute Customer customer) throws ParseException {
+		List<Customer> listaClientes = new ArrayList<Customer>();
+		customer.setDniCustomer(customer.getDniCustomer());
+		model.addAttribute("customer", new Customer());
+
+		if (listaClientes.isEmpty()) {
+			listaClientes = cService.searchDniIgnoreCase(customer.getDniCustomer());
+		}
+		if (listaClientes.isEmpty()) {
+			listaClientes = cService.findByDni(customer.getDniCustomer());
+		}
+		if (listaClientes.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontró");
+		}
+		
+		model.addAttribute("listaClientes", listaClientes);
+		return "customer/find";
 	}
 }

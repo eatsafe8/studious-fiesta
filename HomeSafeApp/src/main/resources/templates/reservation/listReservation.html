@@ -133,6 +133,10 @@
 						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
 							Productos</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
 				</div></li>
 
 
@@ -234,7 +238,7 @@
 								<tr align="center" th:each="v: ${listaReservaciones}">
 									<td th:text="${v.ID_Reservation}"></td>
 									<td th:text="${v.ID_Restaurant.Name_Restaurant}"></td>
-									<td th:text="${v.ID_Customer.DNI_Customer}"></td>
+									<td th:text="${v.ID_Customer.dniCustomer}"></td>
 									<td th:text="${v.Date_Reservation}"></td>
 									<td th:text="${v.Time_Reservation}"></td>
 									<td th:text="${v.NroPersons_Reservation}"></td>

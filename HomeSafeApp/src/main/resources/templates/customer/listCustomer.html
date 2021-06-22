@@ -145,8 +145,11 @@
 						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
 							Productos</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
 				</div></li>
-
 
 			<hr class="sidebar-divider">
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -243,7 +246,7 @@
 						<tbody>
 							<tr align="center" th:each="c: ${listaClientes}">
 								<td th:text="${c.ID_Customer}"></td>
-								<td th:text="${c.DNI_Customer}"></td>
+								<td th:text="${c.dniCustomer}"></td>
 								<td th:text="${c.FirstName_Customer}"></td>
 								<td th:text="${c.LastName_Customer}"></td>
 								<td th:text="${c.Cellphone_Customer}"></td>

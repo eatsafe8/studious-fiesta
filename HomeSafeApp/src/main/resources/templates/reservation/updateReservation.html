@@ -132,6 +132,10 @@
 						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
 							Productos</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
 				</div></li>
 
 			<!-- Divider -->
@@ -246,7 +250,7 @@
 									th:field="*{ID_Customer}">
 									<option th:each="customer : ${listaClientes}"
 										th:value="${customer.ID_Customer}"
-										th:utext="${customer.DNI_Customer}" />
+										th:utext="${customer.dniCustomer}" />
 								</select>
 							</div>
 						</div>

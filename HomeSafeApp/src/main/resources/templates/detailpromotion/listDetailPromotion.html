@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -233,7 +232,7 @@
 								<tr align="center" th:each="d: ${listaDetallePromociones}">
 									<td th:text="${d.ID_DetailPromotion}"></td>
 									<td th:text="${d.promotion.Name_Promotion}"></td>
-									<td th:text="${d.product.Name_Product}"></td>
+									<td th:text="${d.product.nameProduct}"></td>
 									<td th:text="${d.Quantity_DetailPromotion}"></td>
 									<td><a
 										th:href="@{/detailpromotions/delete?id=}+${d.ID_DetailPromotion}"

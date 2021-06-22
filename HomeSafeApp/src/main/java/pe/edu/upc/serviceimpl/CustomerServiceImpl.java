@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.Customer;
-import pe.edu.upc.entities.Roundsman;
 import pe.edu.upc.repository.CustomerRepository;
 import pe.edu.upc.service.ICustomerService;
 
@@ -36,4 +35,17 @@ public class CustomerServiceImpl implements ICustomerService{
 		// TODO Auto-generated method stub
 		return cR.findById(ID_Customer);
 	}
+
+	@Override
+	public List<Customer> searchDniIgnoreCase(String dniCustomer) {
+		// TODO Auto-generated method stub
+		return cR.findByDniCustomerLikeIgnoreCase(dniCustomer);
+	}
+
+	@Override
+	public List<Customer> findByDni(String dniCustomer) {
+		// TODO Auto-generated method stub
+		return cR.findByDni(dniCustomer);
+	}
+
 }
