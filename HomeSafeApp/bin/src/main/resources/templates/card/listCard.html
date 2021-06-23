@@ -59,16 +59,24 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
+					
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+					</div>
 
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -77,6 +85,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/promotions/list}">
 							Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detailpromotions/list}">
+							Detalle Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roundsmans/list}">
@@ -93,7 +105,40 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservations/list}">
+							Reservaciones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
+				</div></li>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
+							Productos</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
 				</div></li>
 
 

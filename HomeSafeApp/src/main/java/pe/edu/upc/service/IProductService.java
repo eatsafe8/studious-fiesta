@@ -17,4 +17,6 @@ public interface IProductService {
 	List<Product> searchNameIgnoreCase(String Name_Product);
 	
 	List<Product> findByName(String Name_Product);
+	
+	public List<String[]> prodXord();
 }

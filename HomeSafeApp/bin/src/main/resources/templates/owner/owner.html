@@ -71,14 +71,21 @@
 					data-parent="#accordionSidebar">
 
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
+						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -87,6 +94,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/promotions/list}">
 							Promociones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detailpromotions/list}">
+							Detalle Promociones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roundsmans/list}">
@@ -103,9 +114,45 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservations/list}">
+							Reservaciones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
 				</div></li>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
+							Productos</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
+				</div></li>
+
+
+			<hr class="sidebar-divider">
+			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -197,8 +244,8 @@
 							<label for="FirstName_Owner" class="col-sm-2 col-form-label">Nombres:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{FirstName_Owner}" pattern="^[a-zA-Z\s]{2,254}"
-									class="form-control"
+								<input type="text" th:field="*{FirstName_Owner}"
+									pattern="^[a-zA-Z\s]{2,254}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('FirstName_Owner')}"
@@ -210,8 +257,8 @@
 							<label for="LastName_Owner" class="col-sm-2 col-form-label">Apellidos:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{LastName_Owner}" pattern="^[a-zA-Z\s]{2,254}"
-									class="form-control"
+								<input type="text" th:field="*{LastName_Owner}"
+									pattern="^[a-zA-Z\s]{2,254}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('LastName_Owner')}"
@@ -249,8 +296,8 @@
 							<label for="Country_Owner" class="col-sm-2 col-form-label">País:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Country_Owner}" pattern="^[a-zA-Z\s]{2,254}"
-									class="form-control"
+								<input type="text" th:field="*{Country_Owner}"
+									pattern="^[a-zA-Z\s]{2,254}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Country_Owner')}"

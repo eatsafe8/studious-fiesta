@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
@@ -49,7 +50,7 @@ public class OrderT {
 	private float Discount_Price;
 	
 	@NotNull(message = "Ingrese FECHA DE PEDIDO")
-	@PastOrPresent(message = "La FECHA DEL PEDIDO debe ser pasada")
+	@Future(message = "La FECHA DEL PEDIDO debe ser futura")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Date_Order")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

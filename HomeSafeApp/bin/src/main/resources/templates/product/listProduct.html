@@ -71,14 +71,22 @@
 					data-parent="#accordionSidebar">
 
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/restaurants/list}"> Restaurantes</a>
+						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+					</div>
+
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">
 							Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/restaurants/list}">
+							Restaurantes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">
@@ -107,9 +115,44 @@
 						<a class="collapse-item" th:href="@{/bankAccounts/list}">
 							Cuentas Bancarias</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orders/list}"> Órdenes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/deliveries/list}">
+							Delivery</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservations/list}">
+							Reservaciones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderProms/list}">
+							Ordenes de Promocion</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/orderDetails/list}">
+							Ordenes de Producto</a>
+					</div>
 				</div></li>
-				<hr class="sidebar-divider"> <!-- Sidebar Toggler (Sidebar) -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
+							Productos</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/listFind}">Buscar
+							Clientes</a>
+					</div>
+				</div></li>
+
+			<hr class="sidebar-divider">
+			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -201,14 +244,13 @@
 						<tbody>
 							<tr align="center" th:each="p: ${listaProductos}">
 								<td th:text="${p.ID_Product}"></td>
-								<td th:text="${p.Name_Product}"></td>
+								<td th:text="${p.nameProduct}"></td>
 								<td th:text="${p.Price_Product}"></td>
 								<td th:text="${p.Stock_Product}"></td>
 								<td th:text="${p.Discount_Product}"></td>
-								<td
-									th:text="${p.restaurant.Name_Restaurant}"></td>
+								<td th:text="${p.restaurant.Name_Restaurant}"></td>
 								<td th:text="${p.Notes_Product}"></td>
-								
+
 								<td><a th:href="@{/products/delete?id=}+${p.ID_Product}"
 									class="btn btn-danger btn-lg"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>

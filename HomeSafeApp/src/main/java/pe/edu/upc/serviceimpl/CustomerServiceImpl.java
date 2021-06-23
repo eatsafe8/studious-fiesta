@@ -48,4 +48,10 @@ public class CustomerServiceImpl implements ICustomerService{
 		return cR.findByDni(dniCustomer);
 	}
 
+	@Override
+	public List<String[]> cusXpriceorder() {
+		// TODO Auto-generated method stub
+		return cR.cusXpriceorder();
+	}
+
 }

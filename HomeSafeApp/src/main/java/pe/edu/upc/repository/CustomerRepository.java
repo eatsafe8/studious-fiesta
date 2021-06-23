@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entities.Customer;
-import pe.edu.upc.entities.Product;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
@@ -16,5 +15,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	public List<Customer> findByDni(String dniCustomer);
 	
 	public List<Customer> findByDniCustomerLikeIgnoreCase(String dniCustomer);
+	
+	@Query(value = "select c.first_name_customer, c.last_name_customer, sum(o.price_order*(1-o.discount_price)) as TotalDineroGastado\r\n"
+			+ "	from Customer c inner join OrderT o on c.ID_Customer=o.ID_Customer\r\n"
+			+ "	group by c.first_name_customer, c.last_name_customer", nativeQuery = true)
+	public List<String[]> cusXpriceorder();
 	
 }

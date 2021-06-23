@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -31,11 +33,11 @@ public class OrderDetail {
 	@JoinColumn(name = "ID_Product", nullable = false)
 	private Product ID_Product;
 
-	@Pattern(regexp = "[0-9]*", message = "El campo cantidad solo acepta numeros")
-	@Size(min = 1, max = 2, message = "La cantidad debe estar en el rango [1;99]")
-	@NotEmpty(message = "Ingrese cantidad")
+	@Min(value = 1, message = "El campo Cantidad debe ser mayor a 1")
+	@Max(value = 99, message = "El campo Cantidad debe ser menor a 99")
+	@NotNull(message = "Ingrese Cantidad")
 	@Column(name = "Quantity_OrderDetail", nullable = false, length=20)
-	private String Quantity_OrderDetail;
+	private int Quantity_OrderDetail;
 
 	@DecimalMin(value = "0.0", inclusive = true, message = "El descuento mínimo es de 0%")
 	@DecimalMax(value = "70.0", inclusive = true, message = "El descuento máximo es de 70%")
@@ -51,8 +53,8 @@ public class OrderDetail {
 	}
 
 	public OrderDetail(int iD_OrderDetail, OrderT iD_Order, Product iD_Product,
-			@Pattern(regexp = "[0-9]*", message = "El campo cantidad solo acepta numeros") @Size(min = 1, max = 2, message = "La cantidad debe estar en el rango [1;99]") @NotEmpty(message = "Ingrese cantidad") String quantity_OrderDetail,
-			@DecimalMin(value = "5.0", inclusive = false, message = "El descuento mínimo es de 5%") @DecimalMax(value = "99.0", inclusive = false, message = "El descuento máximo es de 99% soles") @NotNull(message = "Ingrese Descuento") float discount_OrderDetail,
+			@Min(value = 1, message = "El campo cantidad debe ser mayor a 1") @Max(value = 99, message = "El campo cantidad debe ser menor a 99") int quantity_OrderDetail,
+			@DecimalMin(value = "0.0", inclusive = true, message = "El descuento mínimo es de 0%") @DecimalMax(value = "70.0", inclusive = true, message = "El descuento máximo es de 70%") @NotNull(message = "Ingrese Descuento") float discount_OrderDetail,
 			String notes_OrderDetail) {
 		super();
 		ID_OrderDetail = iD_OrderDetail;
@@ -87,11 +89,11 @@ public class OrderDetail {
 		ID_Product = iD_Product;
 	}
 
-	public String getQuantity_OrderDetail() {
+	public int getQuantity_OrderDetail() {
 		return Quantity_OrderDetail;
 	}
 
-	public void setQuantity_OrderDetail(String quantity_OrderDetail) {
+	public void setQuantity_OrderDetail(int quantity_OrderDetail) {
 		Quantity_OrderDetail = quantity_OrderDetail;
 	}
 

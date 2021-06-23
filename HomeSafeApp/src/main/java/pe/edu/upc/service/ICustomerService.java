@@ -17,4 +17,6 @@ public interface ICustomerService {
 	List<Customer> searchDniIgnoreCase(String dniCustomer);
 
 	List<Customer> findByDni(String dniCustomer);
+	
+	public List<String[]> cusXpriceorder();
 }

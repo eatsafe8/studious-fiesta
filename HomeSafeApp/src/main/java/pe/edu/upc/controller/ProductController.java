@@ -111,4 +111,16 @@ public class ProductController {
 		model.addAttribute("listaProductos", listaProductos);
 		return "product/find";
 	}
+	
+	@RequestMapping("/reports")
+	public String Report()
+	{
+		return "reports/reports";
+	}
+	
+	@RequestMapping("/reporte1")
+	public String productosXord(Map<String, Object> model) {
+		model.put("listProdxImp", pService.prodXord());
+		return "reports/productosOrdenados";
+	}
 }

@@ -123,4 +123,9 @@ public class CustomerController {
 		model.addAttribute("listaClientes", listaClientes);
 		return "customer/find";
 	}
+	@RequestMapping("/reporte2")
+	public String productosXord(Map<String, Object> model) {
+		model.put("listCusxPriceOrder", cService.cusXpriceorder());
+		return "reports/montosClientes";
+	}
 }
