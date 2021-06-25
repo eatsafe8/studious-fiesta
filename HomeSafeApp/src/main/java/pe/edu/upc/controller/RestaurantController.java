@@ -94,4 +94,9 @@ public class RestaurantController {
 		}
 		return "restaurant/updateRestaurant";
 	}
+	@RequestMapping("/reporte3")
+	public String MontoRestaurantFiestasPatrias(Map<String, Object> model) {
+		model.put("listMontoRestuaranteFiestasPatrias", rService.MontoRestuaranteFiestasPatrias());
+		return "reports/MontoRestuaranteFiestasPatrias";
+	}
 }

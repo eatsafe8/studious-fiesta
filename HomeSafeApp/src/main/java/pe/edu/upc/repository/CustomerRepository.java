@@ -21,4 +21,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 			+ "	group by c.first_name_customer, c.last_name_customer", nativeQuery = true)
 	public List<String[]> cusXpriceorder();
 	
+	
 }

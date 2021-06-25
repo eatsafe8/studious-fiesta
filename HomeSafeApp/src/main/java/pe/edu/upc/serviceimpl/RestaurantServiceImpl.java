@@ -35,4 +35,10 @@ public class RestaurantServiceImpl implements IRestaurantService{
 		// TODO Auto-generated method stub
 		return rR.findById(ID_Restaurant);
 	}
+
+	@Override
+	public List<String[]> MontoRestuaranteFiestasPatrias() {
+		// TODO Auto-generated method stub
+		return rR.MontoRestuaranteFiestasPatrias();
+	}
 }

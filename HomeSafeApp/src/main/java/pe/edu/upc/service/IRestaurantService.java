@@ -14,4 +14,5 @@ public interface IRestaurantService {
 	
 	Optional<Restaurant> listarID(int ID_Restaurant);
 	
+	List<String[]> MontoRestuaranteFiestasPatrias();
 }

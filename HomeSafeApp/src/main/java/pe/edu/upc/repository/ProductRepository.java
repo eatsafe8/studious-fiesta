@@ -21,4 +21,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 			nativeQuery = true )
 	public List<String[]> prodXord();
 	
+
+	
 }

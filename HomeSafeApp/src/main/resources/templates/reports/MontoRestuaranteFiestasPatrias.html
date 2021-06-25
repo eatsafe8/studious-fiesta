@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 
 <meta charset="utf-8">
@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>MODIFICAR RESERVACION</title>
+<title>2020</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -33,37 +33,34 @@
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
 			<!-- Sidebar - Brand -->
-			<span sec:authentication="name"></span>
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/reservations/list}">
+				th:href="@{/categories/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">App</div>
+				<div class="sidebar-brand-text mx-2">Programación en Web</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
-				aria-controls="collapseTwo"><i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>Men&uacute;</span> </a>
+				data-target="#collapseTwo" aria-expanded="false"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
+			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-					
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
 					</div>
+
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/owners/list}"> Dueños</a>
 					</div>
@@ -122,7 +119,7 @@
 							Ordenes de Producto</a>
 					</div>
 				</div></li>
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
 			</a>
@@ -140,9 +137,6 @@
 						<a class="collapse-item" th:href="@{/products/reports}">Informacion de Reportes</a>
 					</div>
 				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -210,177 +204,90 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">MODIFICAR RESERVACION</h1>
+				<div class="bg row">
 
-					<hr class="sidebar-divider">
-
-
-					<form th:action="@{/reservations/save}" th:object="${reservation}"
-						method="post">
-						
-						<div class="form-group row">
-							<label for="ID" class="col-sm-2 col-form-label">ID:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" readonly="readonly"
-									th:field="*{ID_Reservation}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('ID_Reservation')}"
-									th:errors="*{ID_Reservation}"></small>
-							</div>
+					<div class="content container">
+						<div class="cinforeport">
+							<h3 class="title-content">Monto Total de Restaurantes en Fiestas Patrias</h3>
+							<p class="inforeport">Lista de todos los restaurantes con sus ingresos totales durante el mes patrio</p>
 						</div>
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col" class="text-center">Nombre Restaurante</th>
+									<th scope="col" class="text-center">Ingresos Totales</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="rep : ${listMontoRestauranteFiestasPatrias}">
+									<td class="text-center" th:text="${rep[0]}"></td>
+									<td class="text-center" th:text="${rep[1]}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-						<div class="form-group row">
-							<label for="restaurant" class="col-sm-2 col-form-label">Restaurante:</label>
-							<div class="col-sm-6">
-								<select class="custom-select custom-select-sm"
-									th:field="*{ID_Restaurant}">
-									<option th:each="restaurant : ${listaRestaurantes}"
-										th:value="${restaurant.ID_Restaurant}"
-										th:utext="${restaurant.Name_Restaurant}" />
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
-							<div class="col-sm-6">
-								<select class="custom-select custom-select-sm"
-									th:field="*{ID_Customer}">
-									<option th:each="customer : ${listaClientes}"
-										th:value="${customer.ID_Customer}"
-										th:utext="${customer.dniCustomer}" />
-								</select>
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="dateReservation" class="col-sm-2 col-form-label">Fecha
-								de reserva: </label>
-							<div class="col-sm-6">
-								<input type="date" th:field="*{Date_Reservation}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Date_Reservation')}"
-									th:errors="*{Date_Reservation}"></small>
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="timeReservation"
-								class="col-sm-2 col-form-label">Hora reserva: </label>
-							<div class="col-sm-6">
-								<input type="time"
-									th:field="*{Time_Reservation}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Time_Reservation')}"
-									th:errors="*{Time_Reservation}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="NroPersons" class="col-sm-2 col-form-label">Nro Personas:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{NroPersons_Reservation}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('NroPersons_Reservation')}"
-									th:errors="*{NroPersons_Reservation}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="NotesReservation" class="col-sm-2 col-form-label">Notas:</label>
-							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{Notes_Reservation}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Notes_Reservation')}"
-									th:errors="*{Notes_Reservation}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/reservations/list" class="btn btn-danger">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-					</form>
 				</div>
-				<!-- /.container-fluid -->
+
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright &copy; Web 2020</span>
+						</div>
+					</div>
+				</footer>
+				<!-- End of Footer -->
 
 			</div>
-			<!-- End of Main Content -->
+			<!-- End of Content Wrapper -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 202101</span>
+		</div>
+		<!-- End of Page Wrapper -->
+
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
+
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+							salir?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Seleccione "Cerrar sesión" a
+						continuación si está listo para finalizar su sesión actual</div>
+					<div class="modal-footer">
+						<form id="logoutForm" th:action="@{/logout}" method="post">
+							<button class="btn btn-danger"
+								onclick="document.getElementById('logoutForm').submit();"
+								type="submit">Cerrar</button>
+							<button class="btn btn-dark" type="button" data-dismiss="modal"
+								th:href="@{/categories/list}">Cancel</button>
+						</form>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
-
-		</div>
-		<!-- End of Content Wrapper -->
-
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
-						salir?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual</div>
-				<div class="modal-footer">
-					<form id="logoutForm" th:action="@{/logout}" method="post">
-						<button class="btn btn-danger"
-							onclick="document.getElementById('logoutForm').submit();"
-							type="submit">Cerrar</button>
-						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/reservations/list}">Cancel</button>
-					</form>
-				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript-->
+		<script src="/vendor/jquery/jquery.min.js"></script>
+		<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+		<!-- Core plugin JavaScript-->
+		<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="/js/sb-admin-2.min.js"></script>
-
+		<!-- Custom scripts for all pages-->
+		<script src="/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>
