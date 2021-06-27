@@ -10,8 +10,6 @@ import pe.edu.upc.entities.Restaurant;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>{
-	@Query(value="select r.name_restaurant, sum(o.price_order*(1-o.discount_price)) from OrderT o join Restaurant r on r.ID_Restaurant=o.ID_Restaurant\r\n"
-			+ "where extract(month from o.date_order)=7\r\n"
-			+ "group by r.name_restaurant", nativeQuery = true)
-	public List<String[]> MontoRestuaranteFiestasPatrias();
+	@Query(value="SELECT r.name_restaurant, sum(o.price_order*(1-o.discount_price)) from ordert o join restaurant r on r.ID_Restaurant=o.ID_Restaurant where extract(month from o.date_order)=7 group by r.name_restaurant", nativeQuery = true)
+	public List<String[]> montoxFiestasPatrias();
 }

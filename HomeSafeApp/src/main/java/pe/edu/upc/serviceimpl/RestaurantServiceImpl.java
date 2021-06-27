@@ -39,6 +39,6 @@ public class RestaurantServiceImpl implements IRestaurantService{
 	@Override
 	public List<String[]> MontoRestuaranteFiestasPatrias() {
 		// TODO Auto-generated method stub
-		return rR.MontoRestuaranteFiestasPatrias();
+		return rR.montoxFiestasPatrias();
 	}
 }
