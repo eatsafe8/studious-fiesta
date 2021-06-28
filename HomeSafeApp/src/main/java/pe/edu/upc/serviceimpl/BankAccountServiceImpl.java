@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class BankAccountServiceImpl implements IBankAccountService {
 	@Override
 	public void delete(int id) {
 		bR.deleteById(id);
+	}
+
+	@Override
+	public Optional<BankAccount> listarID(int id) {
+		// TODO Auto-generated method stub
+		return bR.findById(id);
 	}
 }

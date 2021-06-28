@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,5 +74,24 @@ public class CardController {
 			model.put("mensaje", "Ocurrió un error");
 		}
 		return "redirect:/cards/list";
+	}
+	
+	@GetMapping("/detalle/{id}")
+	public String viewTarjet(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Card> card = cS.listarID(id);
+			model.addAttribute("listaDuenos", oS.list());
+			if(!card.isPresent()) {
+				model.addAttribute("mensaje","Tarjeta no existe");
+				return "redirect:/cards/list";
+			}
+			else {
+				model.addAttribute("card",card.get());
+				return "card/updateCard";
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "card/updateCard";
 	}
 }

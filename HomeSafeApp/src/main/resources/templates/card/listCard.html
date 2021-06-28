@@ -233,7 +233,8 @@
 									<th scope="col">Número</th>
 									<th scope="col">CVV-CVC</th>
 									<th scope="col">Fecha de Expiración</th>
-									<th scope="col">Operacion</th>
+									<th scope="col">OP</th>
+									<th scope="col">OP</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -246,6 +247,11 @@
 
 									<td><a th:href="@{/cards/delete?id=}+${c.ID_Card}"
 										class="btn btn-danger"><i class="fa fa-trash"
+											aria-hidden="true"></i></a></td>
+											
+									<td><a
+										th:href="@{'/cards/detalle/'+${c.ID_Card}}"
+										class="btn btn-danger"><i class="fa fa-pen"
 											aria-hidden="true"></i></a></td>
 
 								</tr>

@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>AGREGAR CUENTA BANCARIA</title>
+<title>LISTAR CUENTAS BANCARIAS</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -232,7 +232,8 @@
 									<th scope="col">Número</th>
 									<th scope="col">Banco</th>
 									<th scope="col">Tipo de Cuenta</th>
-									<th scope="col">Operacion</th>
+									<th scope="col">OP</th>
+									<th scope="col">OP</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -246,6 +247,11 @@
 									<td><a
 										th:href="@{/bankAccounts/delete?id=}+${b.ID_BankAccount}"
 										class="btn btn-danger"><i class="fa fa-trash"
+											aria-hidden="true"></i></a></td>
+											
+									<td><a
+										th:href="@{'/bankAccounts/detalle/'+${b.ID_BankAccount}}"
+										class="btn btn-danger"><i class="fa fa-pen"
 											aria-hidden="true"></i></a></td>
 
 								</tr>
