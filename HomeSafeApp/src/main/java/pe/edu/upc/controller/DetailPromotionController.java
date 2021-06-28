@@ -47,6 +47,8 @@ public class DetailPromotionController {
 	public String saveDetailPromotion(@Valid @ModelAttribute(value = "detailpromotion") DetailPromotion detailpromotion, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaPromociones", prS.list());
+			model.addAttribute("listaProductos", pdS.list());
 			return "detailpromotion/detailpromotion";
 		} else {
 			dpS.insert(detailpromotion);

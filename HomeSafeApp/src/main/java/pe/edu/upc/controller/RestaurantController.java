@@ -41,6 +41,7 @@ public class RestaurantController {
 	public String saveRestaurant(@Valid @ModelAttribute(value = "restaurant") Restaurant restaurant, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaDuenos", oService.list());
 			return "restaurant/restaurant";
 		} else {
 			rService.insert(restaurant);

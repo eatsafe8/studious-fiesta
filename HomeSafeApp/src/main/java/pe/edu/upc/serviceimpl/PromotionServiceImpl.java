@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,12 @@ public class PromotionServiceImpl implements IPromotionService{
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		pR.deleteById(id);
+	}
+
+	@Override
+	public Optional<Promotion> listarID(int ID_Promotion) {
+		// TODO Auto-generated method stub
+		return pR.findById(ID_Promotion);
 	}
 
 }

@@ -150,7 +150,8 @@
 							Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/reports}">Informacion de Reportes</a>
+						<a class="collapse-item" th:href="@{/products/reports}">Informacion
+							de Reportes</a>
 					</div>
 				</div></li>
 
@@ -242,6 +243,7 @@
 								<th scope="col">Restaurante</th>
 								<th scope="col">Notas</th>
 								<th scope="col">Operacion</th>
+								<th scope="col">Operacion</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -258,6 +260,9 @@
 									class="btn btn-danger btn-lg"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>
 
+								<td><a th:href="@{'/promotions/detalle/'+${p.ID_Promotion}}"
+									class="btn btn-danger"><i class="fa fa-pen"
+										aria-hidden="true"></i></a></td>
 
 							</tr>
 						</tbody>

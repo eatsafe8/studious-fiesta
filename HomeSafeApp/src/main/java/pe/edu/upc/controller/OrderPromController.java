@@ -47,6 +47,8 @@ public class OrderPromController {
 	public String saveOrderProm(@Valid @ModelAttribute(value = "orderProm") OrderProm orderProm, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaOrdenes", os.list());
+			model.addAttribute("listaPromociones", ps.list());
 			return "orderProm/orderProm";
 		} else {
 			OPS.insert(orderProm);

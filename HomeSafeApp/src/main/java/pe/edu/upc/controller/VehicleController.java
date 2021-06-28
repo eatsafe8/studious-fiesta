@@ -42,6 +42,7 @@ public class VehicleController {
 	public String saveVehicle(@Valid @ModelAttribute(value = "vehicle") Vehicle vehicle, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaRepartidores", rs.list());
 			return "vehicle/vehicle";
 		} else {
 			vs.insert(vehicle);

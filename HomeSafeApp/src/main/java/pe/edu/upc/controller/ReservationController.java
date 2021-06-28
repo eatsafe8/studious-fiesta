@@ -47,6 +47,8 @@ public class ReservationController {
 	public String saveReservation(@Valid @ModelAttribute(value = "reservation") Reservation reservation, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaRestaurantes", rs.list());
+			model.addAttribute("listaClientes", cs.list());
 			return "reservation/reservation";
 		} else {
 			RS.insert(reservation);

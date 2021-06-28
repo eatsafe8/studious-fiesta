@@ -48,6 +48,8 @@ public class DeliveryController {
 	public String saveDelivery(@Valid @ModelAttribute(value = "delivery") Delivery delivery, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaOrdenes", os.list());
+			model.addAttribute("listaRepartidores", rs.list());
 			return "delivery/delivery";
 		} else {
 			DS.insert(delivery);

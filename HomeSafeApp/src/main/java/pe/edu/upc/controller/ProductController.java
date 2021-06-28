@@ -3,6 +3,7 @@ package pe.edu.upc.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -14,12 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Product;
+import pe.edu.upc.entities.Vehicle;
 import pe.edu.upc.service.IProductService;
 import pe.edu.upc.service.IRestaurantService;
 
@@ -44,6 +47,7 @@ public class ProductController {
 	public String saveProduct(@Valid @ModelAttribute(value="product") Product product, BindingResult result, 
 			Model model, SessionStatus status) throws Exception{
 		if(result.hasErrors()) {
+			model.addAttribute("listaRestaurantes", rService.list());
 			return "product/product";
 		}else {
 			pService.insert(product);
@@ -78,6 +82,25 @@ public class ProductController {
 			// TODO: handle exception
 		}
 		return "redirect:/products/list";
+	}
+	
+	@GetMapping("/detalle/{id}")
+	public String viewProduct(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Product> product = pService.listarId(id);
+			model.addAttribute("listaRestaurantes", rService.list());
+			if(!product.isPresent()) {
+				model.addAttribute("mensaje","Producto no existe");
+				return "redirect:/products/list";
+			}
+			else {
+				model.addAttribute("product",product.get());
+				return "product/updateProduct";
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "product/updateProduct";
 	}
 	
 	@GetMapping("/listFind")

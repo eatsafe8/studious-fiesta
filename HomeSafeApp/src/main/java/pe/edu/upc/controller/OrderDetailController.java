@@ -47,6 +47,8 @@ public class OrderDetailController {
 	public String saveOrderDetail(@Valid @ModelAttribute(value = "orderDetail") OrderDetail orderDetail, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaOrdenes", os.list());
+			model.addAttribute("listaProductos", ps.list());
 			return "orderDetail/orderDetail";
 		} else {
 			ODS.insert(orderDetail);

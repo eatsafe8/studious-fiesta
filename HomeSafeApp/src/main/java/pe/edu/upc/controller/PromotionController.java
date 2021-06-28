@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.entities.Product;
 import pe.edu.upc.entities.Promotion;
 import pe.edu.upc.service.IPromotionService;
 import pe.edu.upc.service.IRestaurantService;
@@ -39,6 +42,7 @@ public class PromotionController {
 	public String savePromotion(@Valid @ModelAttribute(value = "promotion") Promotion promotion, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaRestaurantes", rService.list());
 			return "promotion/promotion";
 		} else {
 			pService.insert(promotion);
@@ -73,5 +77,24 @@ public class PromotionController {
 			// TODO: handle exception
 		}
 		return "redirect:/promotions/list";
+	}
+	
+	@GetMapping("/detalle/{id}")
+	public String viewPromotion(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Promotion> promotion = pService.listarID(id);
+			model.addAttribute("listaRestaurantes", rService.list());
+			if(!promotion.isPresent()) {
+				model.addAttribute("mensaje","Promocion no existe");
+				return "redirect:/promotions/list";
+			}
+			else {
+				model.addAttribute("promotion",promotion.get());
+				return "promotion/updatePromotion";
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "promotion/updatePromotion";
 	}
 }

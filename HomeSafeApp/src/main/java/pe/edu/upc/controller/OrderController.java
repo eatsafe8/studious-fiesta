@@ -48,6 +48,8 @@ public class OrderController {
 	public String saveOrder(@Valid @ModelAttribute(value = "orderT") OrderT orderT, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaRestaurantes", rs.list());
+			model.addAttribute("listaClientes", cs.list());
 			return "order/order";
 		} else {
 			OS.insert(orderT);
