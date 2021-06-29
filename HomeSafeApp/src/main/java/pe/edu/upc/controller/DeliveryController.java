@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,7 @@ public class DeliveryController {
 	
 	@Autowired
 	private IRoundsmanService rs;
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newDelivery(Model model) {
 		model.addAttribute("delivery", new Delivery());
@@ -43,7 +44,7 @@ public class DeliveryController {
 		model.addAttribute("listaRepartidores", rs.list());
 		return "delivery/delivery";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveDelivery(@Valid @ModelAttribute(value = "delivery") Delivery delivery, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -58,7 +59,7 @@ public class DeliveryController {
 			return "redirect:/deliveries/list";
 		}
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listDelivery(Model model) {
 		try {
@@ -68,7 +69,7 @@ public class DeliveryController {
 		}
 		return "delivery/listDelivery";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteDelivery(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -82,7 +83,7 @@ public class DeliveryController {
 		}
 		return "redirect:/deliveries/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewOrder(@PathVariable(value = "id") int id, Model model) {
 		try {

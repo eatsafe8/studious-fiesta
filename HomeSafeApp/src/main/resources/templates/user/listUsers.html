@@ -121,7 +121,7 @@
 							Ordenes de Producto</a>
 					</div>
 				</div></li>
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
 			</a>
@@ -136,7 +136,8 @@
 							Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/reports}">Informacion de Reportes</a>
+						<a class="collapse-item" th:href="@{/products/reports}">Informacion
+							de Reportes</a>
 					</div>
 				</div></li>
 
@@ -223,16 +224,21 @@
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">usuario</th>
-
-
+								<th scope="col">ID</th>
+								<th scope="col">Usuario</th>
+								<th scope="col">Estado</th>
+								<th scope="col">OP</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="u: ${listUsers}">
 								<td th:text="${u.id}"></td>
 								<td th:text="${u.username}"></td>
+								<td th:text="${u.enabled}"></td>
+								<td><a
+										th:href="@{/users/delete?id=}+${u.id}"
+										class="btn btn-danger"><i class="fa fa-trash"
+											aria-hidden="true"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

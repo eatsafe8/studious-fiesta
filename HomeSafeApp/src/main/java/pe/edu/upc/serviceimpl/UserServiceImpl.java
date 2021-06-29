@@ -24,4 +24,10 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return uR.findAll();
 	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		uR.deleteById((long) id);
+	}
 }

@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.apache.el.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,7 @@ public class CustomerController {
 	private ICustomerService cService;
 	
 	/*localhost:8082/owner/*/
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newCustomer(Model model) {
 		model.addAttribute("customer", new Customer());
@@ -37,6 +39,7 @@ public class CustomerController {
 	}
 	
 	//valid permite visualizar la validacion de @Size, @Email, etc...
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String savecustomer(@Valid @ModelAttribute(value="customer") Customer customer, BindingResult result, 
 			Model model, SessionStatus status) throws Exception{
@@ -49,6 +52,7 @@ public class CustomerController {
 			return "redirect:/customers/list";
 		}
 	}
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listCustomer(Model model) {
 		try {
@@ -60,6 +64,7 @@ public class CustomerController {
 		return "customer/listCustomer";
 	}
 	//para editar o modificar es request pero solo lectura se usa get?
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteCustomer(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
@@ -74,7 +79,7 @@ public class CustomerController {
 		}
 		return "redirect:/customers/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewCustomer(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -92,7 +97,7 @@ public class CustomerController {
 		}
 		return "customer/updateCustomer";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/listFind")
 	public String listCustomerFind(Model model) {
 		try {
@@ -103,7 +108,7 @@ public class CustomerController {
 		}
 		return "customer/find";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/find")
 	public String findByCustomer(Model model, @ModelAttribute Customer customer) throws ParseException {
 		List<Customer> listaClientes = new ArrayList<Customer>();
@@ -123,6 +128,7 @@ public class CustomerController {
 		model.addAttribute("listaClientes", listaClientes);
 		return "customer/find";
 	}
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reporte2")
 	public String productosXord(Map<String, Object> model) {
 		model.put("listCusxPriceOrder", cService.cusXpriceorder());

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,7 @@ public class OrderController {
 	
 	@Autowired
 	private ICustomerService cs;
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newOrder(Model model) {
 		model.addAttribute("orderT", new OrderT());
@@ -43,7 +44,7 @@ public class OrderController {
 		model.addAttribute("listaClientes", cs.list());
 		return "order/order";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveOrder(@Valid @ModelAttribute(value = "orderT") OrderT orderT, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -58,7 +59,7 @@ public class OrderController {
 			return "redirect:/orders/list";
 		}
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listOrder(Model model) {
 		try {
@@ -68,7 +69,7 @@ public class OrderController {
 		}
 		return "order/listOrder";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteOrder(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -82,7 +83,7 @@ public class OrderController {
 		}
 		return "redirect:/orders/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewOrder(@PathVariable(value = "id") int id, Model model) {
 		try {

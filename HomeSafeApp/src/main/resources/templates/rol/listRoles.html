@@ -122,7 +122,7 @@
 							Ordenes de Producto</a>
 					</div>
 				</div></li>
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
 			</a>
@@ -137,7 +137,8 @@
 							Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/reports}">Informacion de Reportes</a>
+						<a class="collapse-item" th:href="@{/products/reports}">Informacion
+							de Reportes</a>
 					</div>
 				</div></li>
 
@@ -227,6 +228,7 @@
 								<th scope="col">Id</th>
 								<th scope="col">Rol</th>
 								<th scope="col">Usuario</th>
+								<th scope="col">OP</th>
 
 
 							</tr>
@@ -236,6 +238,9 @@
 								<td th:text="${r.id}"></td>
 								<td th:text="${r.rol}"></td>
 								<td th:text="${r.user.username}"></td>
+								<td><a th:href="@{/roles/delete?id=}+${r.id}"
+									class="btn btn-danger"><i class="fa fa-trash"
+										aria-hidden="true"></i></a></td>
 
 							</tr>
 						</tbody>

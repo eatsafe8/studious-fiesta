@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +31,14 @@ public class BankAccountController {
 
 	@Autowired
 	private IOwnerService oS;
-
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/new")
 	public String newBankAccount(Model model) {
 		model.addAttribute("bankAccount", new BankAccount());
 		model.addAttribute("listaDuenos", oS.list());
 		return "bankAccount/bankAccount";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveBankAccount(@Valid @ModelAttribute(value = "bankAccount") BankAccount bankAccount,
 			BindingResult result, Model model, SessionStatus status) throws Exception {
@@ -51,7 +52,7 @@ public class BankAccountController {
 			return "redirect:/bankAccounts/list";
 		}
 	}
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listBankAccount(Model model) {
 		try {
@@ -61,7 +62,7 @@ public class BankAccountController {
 		}
 		return "bankAccount/listBankAccount";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteBankAccount(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -75,7 +76,7 @@ public class BankAccountController {
 		}
 		return "redirect:/bankAccounts/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewBankAccount(@PathVariable(value = "id") int id, Model model) {
 		try {

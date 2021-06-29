@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +35,7 @@ public class OrderPromController {
 	
 	@Autowired
 	private IPromotionService ps;
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newOrderProm(Model model) {
 		model.addAttribute("orderProm", new OrderProm());
@@ -42,7 +43,7 @@ public class OrderPromController {
 		model.addAttribute("listaPromociones", ps.list());
 		return "orderProm/orderProm";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveOrderProm(@Valid @ModelAttribute(value = "orderProm") OrderProm orderProm, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -57,7 +58,7 @@ public class OrderPromController {
 			return "redirect:/orderProms/list";
 		}
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listOrderProm(Model model) {
 		try {
@@ -67,7 +68,7 @@ public class OrderPromController {
 		}
 		return "orderProm/listOrderProm";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteOrderProm(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -81,7 +82,7 @@ public class OrderPromController {
 		}
 		return "redirect:/orderProms/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewOrderProm(@PathVariable(value = "id") int id, Model model) {
 		try {

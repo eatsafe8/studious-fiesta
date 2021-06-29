@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +30,7 @@ public class PromotionController {
 	private IPromotionService pService;
 	@Autowired
 	private IRestaurantService rService;
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newPromotion(Model model) {
 		model.addAttribute("promotion", new Promotion());
@@ -38,6 +39,7 @@ public class PromotionController {
 	}
 
 	// valid permite visualizar la validacion de @Size, @Email, etc...
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String savePromotion(@Valid @ModelAttribute(value = "promotion") Promotion promotion, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -51,7 +53,7 @@ public class PromotionController {
 			return "redirect:/promotions/list";
 		}
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
 	@GetMapping("/list")
 	public String listPromotion(Model model) {
 		try {
@@ -64,6 +66,7 @@ public class PromotionController {
 	}
 
 	// para editar o modificar es request pero solo lectura se usa get?
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deletePromotion(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -78,7 +81,7 @@ public class PromotionController {
 		}
 		return "redirect:/promotions/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewPromotion(@PathVariable(value = "id") int id, Model model) {
 		try {

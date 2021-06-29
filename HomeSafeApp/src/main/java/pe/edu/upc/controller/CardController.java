@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +31,14 @@ public class CardController {
 
 	@Autowired
 	private IOwnerService oS;
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newCard(Model model) {
 		model.addAttribute("card", new Card());
 		model.addAttribute("listaDuenos", oS.list());
 		return "card/card";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveCard(@Valid @ModelAttribute(value = "card") Card card, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
@@ -51,7 +52,7 @@ public class CardController {
 			return "redirect:/cards/list";
 		}
 	}
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listCard(Model model) {
 		try {
@@ -61,7 +62,7 @@ public class CardController {
 		}
 		return "card/listCard";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteCard(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -75,7 +76,7 @@ public class CardController {
 		}
 		return "redirect:/cards/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewTarjet(@PathVariable(value = "id") int id, Model model) {
 		try {

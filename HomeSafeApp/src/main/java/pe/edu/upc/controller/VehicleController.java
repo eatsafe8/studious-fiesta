@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +31,14 @@ public class VehicleController {
 	
 	@Autowired
 	private IRoundsmanService rs;
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newVehicle(Model model) {
 		model.addAttribute("vehicle", new Vehicle());
 		model.addAttribute("listaRepartidores", rs.list());
 		return "vehicle/vehicle";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveVehicle(@Valid @ModelAttribute(value = "vehicle") Vehicle vehicle, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -51,7 +52,7 @@ public class VehicleController {
 			return "redirect:/vehicles/list";
 		}
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listVehicle(Model model) {
 		try {
@@ -61,7 +62,7 @@ public class VehicleController {
 		}
 		return "vehicle/listVehicle";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteVehicle(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -76,7 +77,7 @@ public class VehicleController {
 		return "redirect:/vehicles/list";
 
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewVehicle(@PathVariable(value = "id") int id, Model model) {
 		try {

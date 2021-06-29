@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,7 @@ public class RestaurantController {
 	private IRestaurantService rService;
 	@Autowired
 	private IOwnerService oService;
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newRestaurant(Model model) {
 		model.addAttribute("restaurant", new Restaurant());
@@ -37,6 +38,7 @@ public class RestaurantController {
 	}
 
 	// valid permite visualizar la validacion de @Size, @Email, etc...
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveRestaurant(@Valid @ModelAttribute(value = "restaurant") Restaurant restaurant, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -50,7 +52,7 @@ public class RestaurantController {
 			return "redirect:/restaurants/list";
 		}
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
 	@GetMapping("/list")
 	public String listRestaurant(Model model) {
 		try {
@@ -63,6 +65,7 @@ public class RestaurantController {
 	}
 
 	// para editar o modificar es request pero solo lectura se usa get?
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteRestaurant(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -77,7 +80,7 @@ public class RestaurantController {
 		}
 		return "redirect:/restaurants/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewRestaurant(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -95,6 +98,7 @@ public class RestaurantController {
 		}
 		return "restaurant/updateRestaurant";
 	}
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reporte3")
 	public String montoXfiestasPatrias(Map<String, Object> model) {
 		model.put("listMontoXFiestas", rService.MontoRestuaranteFiestasPatrias());

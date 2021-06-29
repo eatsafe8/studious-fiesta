@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +35,7 @@ public class DetailPromotionController {
 	@Autowired
 	private IProductService pdS;
 	
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newDetailPromotion(Model model) {
 		model.addAttribute("detailpromotion", new DetailPromotion());
@@ -42,7 +43,7 @@ public class DetailPromotionController {
 		model.addAttribute("listaProductos", pdS.list());
 		return "detailpromotion/detailpromotion";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveDetailPromotion(@Valid @ModelAttribute(value = "detailpromotion") DetailPromotion detailpromotion, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -57,7 +58,7 @@ public class DetailPromotionController {
 			return "redirect:/detailpromotions/list";
 		}
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
 	@GetMapping("/list")
 	public String listDetailPromotion(Model model) {
 		try {
@@ -67,7 +68,7 @@ public class DetailPromotionController {
 		}
 		return "detailpromotion/listDetailPromotion";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteDetailPromotion(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -81,7 +82,7 @@ public class DetailPromotionController {
 		}
 		return "redirect:/detailpromotions/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewDetailProm(@PathVariable(value = "id") int id, Model model) {
 		try {

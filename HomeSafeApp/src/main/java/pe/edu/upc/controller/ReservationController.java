@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +35,7 @@ public class ReservationController {
 	
 	@Autowired
 	private ICustomerService cs;
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newReservation(Model model) {
 		model.addAttribute("reservation", new Reservation());
@@ -42,7 +43,7 @@ public class ReservationController {
 		model.addAttribute("listaClientes", cs.list());
 		return "reservation/reservation";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveReservation(@Valid @ModelAttribute(value = "reservation") Reservation reservation, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -57,7 +58,7 @@ public class ReservationController {
 			return "redirect:/reservations/list";
 		}
 	}
-	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/list")
 	public String listReservation(Model model) {
 		try {
@@ -67,7 +68,7 @@ public class ReservationController {
 		}
 		return "reservation/listReservation";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteReservation(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -81,7 +82,7 @@ public class ReservationController {
 		}
 		return "redirect:/reservations/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewReservation(@PathVariable(value = "id") int id, Model model) {
 		try {

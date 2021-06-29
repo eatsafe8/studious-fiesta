@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,13 +27,13 @@ public class RoundsmanController {
 
 	@Autowired
 	private IRoundsmanService rs;
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newRoundsman(Model model) {
 		model.addAttribute("roundsman", new Roundsman());
 		return "roundsman/roundsman";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveRoundsman(@Valid @ModelAttribute(value = "roundsman") Roundsman roundsman, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
@@ -45,7 +46,7 @@ public class RoundsmanController {
 			return "redirect:/roundsmans/list";
 		}
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listRoundsman(Model model) {
 		try {
@@ -55,7 +56,7 @@ public class RoundsmanController {
 		}
 		return "roundsman/listRoundsman";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteRoundsman(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -69,7 +70,7 @@ public class RoundsmanController {
 		}
 		return "redirect:/roundsmans/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewRoundsman(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -87,6 +88,7 @@ public class RoundsmanController {
 		}
 		return "roundsman/updateRoundsman";
 	}
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reporte4")
 	public String DeliveriesXRoundsman(Map<String, Object> model) {
 		model.put("listDeliveriesXRoundsman", rs.DeliveriesXRoundsman());

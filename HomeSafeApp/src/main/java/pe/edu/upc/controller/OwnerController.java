@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,7 @@ public class OwnerController {
 	private IOwnerService oService;
 	
 	/*localhost:8082/owner/*/
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newOwner(Model model) {
 		model.addAttribute("owner", new Owner());
@@ -35,6 +37,7 @@ public class OwnerController {
 	}
 	
 	//valid permite visualizar la validacion de @Size, @Email, etc...
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveOwner(@Valid @ModelAttribute(value="owner") Owner owner, BindingResult result, 
 			Model model, SessionStatus status) throws Exception{
@@ -47,6 +50,7 @@ public class OwnerController {
 			return "redirect:/owners/list";
 		}
 	}
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listOwner(Model model) {
 		try {
@@ -58,6 +62,7 @@ public class OwnerController {
 		return "owner/listOwner";
 	}
 	//para editar o modificar es request pero solo lectura se usa get?
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteOwner(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
@@ -72,7 +77,7 @@ public class OwnerController {
 		}
 		return "redirect:/owners/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewOwner(@PathVariable(value = "id") int id, Model model) {
 		try {

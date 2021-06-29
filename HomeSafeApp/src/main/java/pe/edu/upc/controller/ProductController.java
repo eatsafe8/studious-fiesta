@@ -35,6 +35,7 @@ public class ProductController {
 	private IRestaurantService rService;
 	
 	/*localhost:8082/owner/*/
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newProduct(Model model) {
 		model.addAttribute("product", new Product());
@@ -43,6 +44,7 @@ public class ProductController {
 	}
 	
 	//valid permite visualizar la validacion de @Size, @Email, etc...
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveProduct(@Valid @ModelAttribute(value="product") Product product, BindingResult result, 
 			Model model, SessionStatus status) throws Exception{
@@ -56,7 +58,7 @@ public class ProductController {
 			return "redirect:/products/list";
 		}
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
 	@GetMapping("/list")
 	public String listProduct(Model model) {
 		try {
@@ -69,6 +71,7 @@ public class ProductController {
 	}
 	
 	//para editar o modificar es request pero solo lectura se usa get?
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete")
 	public String deleteProduct(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
@@ -83,7 +86,7 @@ public class ProductController {
 		}
 		return "redirect:/products/list";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String viewProduct(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -102,7 +105,7 @@ public class ProductController {
 		}
 		return "product/updateProduct";
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
 	@GetMapping("/listFind")
 	public String listProductFind(Model model) {
 		try {
@@ -114,7 +117,7 @@ public class ProductController {
 		}
 		return "product/find";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/find")
 	public String findByProduct(Model model, @ModelAttribute Product product) throws ParseException {
 		List<Product> listaProductos = new ArrayList<Product>();
@@ -134,19 +137,19 @@ public class ProductController {
 		model.addAttribute("listaProductos", listaProductos);
 		return "product/find";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reports")
 	public String Report()
 	{
 		return "reports/reports";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reporte1")
 	public String productosXord(Map<String, Object> model) {
 		model.put("listProdxImp", pService.prodXord());
 		return "reports/productosOrdenados";
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reporte5")
 	public String ProdVendPrim6Mes(Map<String, Object> model) {
 		model.put("listProdVendPrim6Mes", pService.ProdVendPrim6Mes());
