@@ -87,4 +87,9 @@ public class RoundsmanController {
 		}
 		return "roundsman/updateRoundsman";
 	}
+	@RequestMapping("/reporte4")
+	public String DeliveriesXRoundsman(Map<String, Object> model) {
+		model.put("listDeliveriesXRoundsman", rs.DeliveriesXRoundsman());
+		return "reports/DeliveriesXRoundsman";
+	}
 }

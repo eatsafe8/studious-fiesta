@@ -203,47 +203,33 @@
 
 				</nav>
 				<!-- End of Topbar -->
-				<div class="content container">
-					<div class="cinforeport">
-						<h3 class="title-content">Reportes</h3>
-					</div>
-				</div>
+
 
 				<div class="bg row">
 
-
 					<div class="content container">
-						<div class="creportes d-flex justify-content-around">
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Productos por Orden</h3>
-								<p class="dproyecto ">Lista de la cantidad de veces que un
-									producto fue Ordenado</p>
-								<a class="lnikp " th:href="@{/products/reporte1}">Ver
-									Reporte</a>
-							</div>
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Monto total de las Ordenes de los Clientes</h3>
-								<p class="dproyecto ">Lista del Precio Total de los clientes</p>
-								<a class="lnikp " th:href="@{/customers/reporte2}">Ver
-									Reporte</a>
-							</div>
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Monto Total de Restaurantes en Fiestas Patrias</h3>
-								<p class="dproyecto ">Lista de todos los restaurantes con sus ingresos totales durante el mes patrio</p>
-								<a class="lnikp " th:href="@{/restaurants/reporte3}">Ver
-									Reporte</a>
-							</div>
+						<div class="cinforeport">
+							<h3 class="title-content">Cantidad de deliveries por repartidor</h3>
+							<p class="inforeport">Lista de las veces que un repartidor hizo un delivery</p>
 						</div>
-						<div class="creportes d-flex justify-content-around">
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Cantidad de deliveries por repartidor</h3>
-								<p class="dproyecto ">Lista de las veces que un repartidor hizo un delivery</p>
-								<a class="lnikp " th:href="@{/roundsmans/reporte4}">Ver
-									Reporte</a>
-							</div>
-						</div>
-
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col" class="text-center">Nombres</th>
+									<th scope="col" class="text-center">Apellidos</th>
+									<th scope="col" class="text-center">Cantidad</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="rep : ${listDeliveriesXRoundsman}">
+									<td class="text-center" th:text="${rep[0]}"></td>
+									<td class="text-center" th:text="${rep[1]}"></td>
+									<td class="text-center" th:text="${rep[2]}"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
+
 				</div>
 
 				<!-- Footer -->

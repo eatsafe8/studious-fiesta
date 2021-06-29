@@ -15,4 +15,6 @@ public interface IRoundsmanService {
 	
 	Optional<Roundsman> listarID(int ID_Roundsman);
 	
+	public List<String[]> DeliveriesXRoundsman();
+	
 }

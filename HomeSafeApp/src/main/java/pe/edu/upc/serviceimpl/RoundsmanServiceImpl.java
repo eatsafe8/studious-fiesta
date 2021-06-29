@@ -38,4 +38,10 @@ public class RoundsmanServiceImpl implements IRoundsmanService{
 		return rp.findById(ID_Roundsman);
 	}
 
+	@Override
+	public List<String[]> DeliveriesXRoundsman() {
+		// TODO Auto-generated method stub
+		return rp.DeliveriesXRoundsman();
+	}
+
 }

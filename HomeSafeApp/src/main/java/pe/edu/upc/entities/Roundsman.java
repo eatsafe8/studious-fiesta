@@ -66,7 +66,7 @@ public class Roundsman {
 	private String StateRoundsman;
 	
 	@NotEmpty(message = "Ingrese NOTAS")
-	@Column(name = "Notes_Roundsman", nullable =false , length=50)
+	@Column(name = "Notes_Roundsman", nullable =true , length=50)
 	private String Notes_Roundsman;
 
 	
