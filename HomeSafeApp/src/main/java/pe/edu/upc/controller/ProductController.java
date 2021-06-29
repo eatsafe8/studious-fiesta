@@ -117,7 +117,7 @@ public class ProductController {
 		}
 		return "product/find";
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
 	@RequestMapping("/find")
 	public String findByProduct(Model model, @ModelAttribute Product product) throws ParseException {
 		List<Product> listaProductos = new ArrayList<Product>();

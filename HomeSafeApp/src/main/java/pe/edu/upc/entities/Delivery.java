@@ -14,9 +14,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -42,7 +42,7 @@ public class Delivery {
 	private String DestinationAdress;
 	
 	@NotNull(message = "Ingrese FECHA DE DELIVERY")
-	@PastOrPresent(message = "La FECHA DE DELIVERY debe ser pasada")
+	@FutureOrPresent(message = "La FECHA DE DELIVERY debe ser futura")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Date_Delivery")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -68,7 +68,7 @@ public class Delivery {
 	@Column(name = "Discount_Delivery", nullable =false , length=50)
 	private float Discount_Delivery;
 	
-	@Column(name = "Notes_Delivery", length=50)
+	@Column(name = "Notes_Delivery", nullable =true, length=50)
 	private String Notes_Delivery;
 	
 	public Delivery() {
