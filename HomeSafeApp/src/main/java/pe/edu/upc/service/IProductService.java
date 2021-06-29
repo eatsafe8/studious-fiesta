@@ -19,4 +19,6 @@ public interface IProductService {
 	List<Product> findByName(String Name_Product);
 	
 	public List<String[]> prodXord();
+	
+	public List<String[]> ProdVendPrim6Mes();
 }

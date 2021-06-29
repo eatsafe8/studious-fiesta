@@ -53,4 +53,10 @@ public class ProductServiceImpl implements IProductService{
 		// TODO Auto-generated method stub
 		return pR.prodXord();
 	}
+
+	@Override
+	public List<String[]> ProdVendPrim6Mes() {
+		// TODO Auto-generated method stub
+		return pR.ProdVendPrim6Mes();
+	}
 }

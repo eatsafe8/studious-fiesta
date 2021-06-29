@@ -146,4 +146,10 @@ public class ProductController {
 		model.put("listProdxImp", pService.prodXord());
 		return "reports/productosOrdenados";
 	}
+	
+	@RequestMapping("/reporte5")
+	public String ProdVendPrim6Mes(Map<String, Object> model) {
+		model.put("listProdVendPrim6Mes", pService.ProdVendPrim6Mes());
+		return "reports/ProdVendPrim6Mes";
+	}
 }

@@ -21,6 +21,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 			nativeQuery = true )
 	public List<String[]> prodXord();
 	
-
+	@Query(value="select distinct pr.name_product, r.name_restaurant from order_detail od inner join Product pr on od.ID_Product=pr.ID_Product join ordert o on o.ID_Order=od.ID_Order join restaurant r on r.ID_Restaurant=pr.ID_Restaurant where o.date_order between '2022-01-01' and '2022-06-30'",
+			nativeQuery=true)
+	public List<String[]> ProdVendPrim6Mes();
 	
 }
